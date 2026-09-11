@@ -1,0 +1,3905 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ardi EduAI V6.3</title>
+
+<style>
+:root{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#6b7280;
+  --line:#e5e7eb;
+  --primary:#7c3aed;
+  --primary2:#4f46e5;
+  --blue:#2563eb;
+  --green:#059669;
+  --orange:#ea580c;
+  --red:#dc2626;
+  --shadow:0 12px 35px rgba(15,23,42,.08);
+  --radius:20px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  background:
+    radial-gradient(circle at top left,rgba(124,58,237,.08),transparent 28%),
+    radial-gradient(circle at top right,rgba(37,99,235,.07),transparent 25%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,
+select,
+input,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:min(1400px,94%);
+  margin:auto;
+}
+
+/* =====================================================
+HEADER
+===================================================== */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav{
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  color:white;
+  font-size:23px;
+  font-weight:800;
+  background:linear-gradient(135deg,var(--primary),var(--blue));
+  box-shadow:0 8px 20px rgba(79,70,229,.25);
+}
+
+.brand-title{
+  font-size:20px;
+  font-weight:800;
+}
+
+.brand-sub{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+.nav-actions{
+  display:flex;
+  gap:9px;
+}
+
+.nav-btn{
+  border:1px solid var(--line);
+  background:white;
+  color:var(--text);
+  padding:10px 15px;
+  border-radius:11px;
+  transition:.2s;
+}
+
+.nav-btn:hover{
+  border-color:var(--primary);
+  color:var(--primary);
+}
+
+/* =====================================================
+HERO
+===================================================== */
+
+.hero{
+  margin:28px 0 22px;
+  border-radius:28px;
+  padding:38px;
+  color:white;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,255,255,.22),transparent 25%),
+    linear-gradient(135deg,#4f46e5,#7c3aed 55%,#2563eb);
+  box-shadow:0 18px 45px rgba(79,70,229,.22);
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border:2px solid rgba(255,255,255,.12);
+  border-radius:50%;
+  right:-60px;
+  bottom:-90px;
+}
+
+.hero-badge{
+  display:inline-flex;
+  padding:7px 12px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.12);
+  border-radius:999px;
+  font-size:12px;
+  margin-bottom:15px;
+}
+
+.hero h1{
+  font-size:clamp(30px,5vw,52px);
+  line-height:1.05;
+  letter-spacing:-1.5px;
+  margin-bottom:12px;
+}
+
+.hero p{
+  max-width:750px;
+  line-height:1.7;
+  opacity:.92;
+}
+
+.hero-author{
+  margin-top:22px;
+  font-size:13px;
+  opacity:.8;
+}
+
+/* =====================================================
+STATS
+===================================================== */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-bottom:24px;
+}
+
+.stat{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+.stat-number{
+  font-size:25px;
+  font-weight:800;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* =====================================================
+SECTION
+===================================================== */
+
+.section{
+  margin:30px 0;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  margin-bottom:15px;
+}
+
+.section-title{
+  font-size:22px;
+  font-weight:800;
+}
+
+.section-desc{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
+}
+
+/* =====================================================
+QUICK START
+===================================================== */
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.quick-card{
+  border:1px solid var(--line);
+  background:white;
+  padding:17px;
+  border-radius:16px;
+  text-align:left;
+  transition:.2s;
+}
+
+.quick-card:hover{
+  transform:translateY(-3px);
+  border-color:#c4b5fd;
+  box-shadow:var(--shadow);
+}
+
+.quick-icon{
+  font-size:24px;
+  margin-bottom:8px;
+}
+
+.quick-title{
+  font-weight:750;
+  font-size:14px;
+}
+
+.quick-sub{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* =====================================================
+GENERATOR CARDS
+===================================================== */
+
+.generator-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.generator-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:20px;
+  transition:.25s;
+  position:relative;
+  overflow:hidden;
+}
+
+.generator-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow);
+  border-color:#c4b5fd;
+}
+
+.generator-card.active{
+  border:2px solid var(--primary);
+  box-shadow:0 12px 35px rgba(124,58,237,.14);
+}
+
+.generator-icon{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  display:grid;
+  place-items:center;
+  font-size:24px;
+  background:#f3f0ff;
+  margin-bottom:13px;
+}
+
+.generator-card h3{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.generator-card p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+/* =====================================================
+WORKSPACE
+===================================================== */
+
+.workspace{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:25px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.workspace-top{
+  padding:22px 24px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.workspace-title{
+  font-size:19px;
+  font-weight:800;
+}
+
+.current-generator{
+  color:var(--primary);
+  font-size:13px;
+  font-weight:700;
+}
+
+.steps{
+  display:flex;
+  padding:18px 24px;
+  border-bottom:1px solid var(--line);
+  gap:8px;
+  overflow:auto;
+}
+
+.step{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#9ca3af;
+  white-space:nowrap;
+  font-size:12px;
+  font-weight:700;
+}
+
+.step-number{
+  width:26px;
+  height:26px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#f1f5f9;
+}
+
+.step.active{
+  color:var(--primary);
+}
+
+.step.active .step-number{
+  color:white;
+  background:var(--primary);
+}
+
+.workspace-body{
+  padding:25px;
+}
+
+/* =====================================================
+FORM
+===================================================== */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.form-group.full{
+  grid-column:1/-1;
+}
+
+label{
+  font-size:13px;
+  font-weight:750;
+}
+
+label span{
+  color:var(--muted);
+  font-weight:500;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  border:1px solid #dfe3ea;
+  border-radius:12px;
+  background:#fff;
+  color:var(--text);
+  padding:12px 13px;
+  outline:none;
+  transition:.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 4px rgba(124,58,237,.08);
+}
+
+textarea{
+  min-height:105px;
+  resize:vertical;
+}
+
+.help{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* =====================================================
+ADAPTIVE CLASS
+===================================================== */
+
+.adaptive-box{
+  margin:20px 0;
+  border:1px solid #ddd6fe;
+  background:linear-gradient(135deg,#faf5ff,#f5f3ff);
+  border-radius:18px;
+  padding:17px;
+}
+
+.adaptive-title{
+  font-weight:800;
+  color:#6d28d9;
+  margin-bottom:6px;
+}
+
+.adaptive-content{
+  font-size:12px;
+  color:#5b21b6;
+  line-height:1.6;
+}
+
+/* =====================================================
+CHARACTER
+===================================================== */
+
+.character-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.check-item{
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:10px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  background:white;
+  cursor:pointer;
+}
+
+.check-item:hover{
+  border-color:#c4b5fd;
+}
+
+.check-item input{
+  width:auto;
+}
+
+/* =====================================================
+VISUAL DESIGN ENGINE
+===================================================== */
+
+.visual-engine{
+  margin-top:22px;
+  padding:21px;
+  border-radius:21px;
+  background:
+    linear-gradient(135deg,#fff7ed,#fdf4ff 50%,#eff6ff);
+  border:1px solid #e9d5ff;
+}
+
+.visual-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.visual-logo{
+  width:43px;
+  height:43px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,#f59e0b,#ec4899);
+  color:white;
+  font-size:22px;
+}
+
+.visual-title{
+  font-weight:850;
+  font-size:17px;
+}
+
+.visual-subtitle{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
+
+.visual-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.visual-elements{
+  grid-column:1/-1;
+}
+
+.visual-check-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:5px;
+}
+
+.visual-check{
+  border:1px solid #e5e7eb;
+  background:white;
+  padding:9px;
+  border-radius:10px;
+  font-size:11px;
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+
+.visual-check input{
+  width:auto;
+}
+
+.visual-note{
+  margin-top:14px;
+  font-size:11px;
+  color:#6b7280;
+  line-height:1.6;
+  background:rgba(255,255,255,.7);
+  padding:10px 12px;
+  border-radius:11px;
+}
+
+/* =====================================================
+DYNAMIC OPTIONS
+===================================================== */
+
+.dynamic-panel{
+  margin-top:22px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+}
+
+.dynamic-title{
+  font-weight:800;
+  margin-bottom:14px;
+}
+
+.dynamic-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+/* =====================================================
+BUTTON
+===================================================== */
+
+.actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:24px;
+}
+
+.btn{
+  border:none;
+  border-radius:12px;
+  padding:12px 18px;
+  font-weight:750;
+  transition:.2s;
+}
+
+.btn-primary{
+  color:white;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  box-shadow:0 8px 18px rgba(79,70,229,.22);
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+}
+
+.btn-secondary{
+  background:#f1f5f9;
+  color:#334155;
+}
+
+.btn-danger{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.btn-success{
+  background:#dcfce7;
+  color:#166534;
+}
+
+/* =====================================================
+RESULT
+===================================================== */
+
+.result-box{
+  margin-top:25px;
+  background:#0f172a;
+  color:#e2e8f0;
+  border-radius:20px;
+  overflow:hidden;
+  display:none;
+}
+
+.result-head{
+  padding:15px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #263244;
+}
+
+.result-title{
+  font-weight:800;
+  color:white;
+}
+
+.result-actions{
+  display:flex;
+  gap:7px;
+}
+
+.result-actions button{
+  border:1px solid #334155;
+  background:#1e293b;
+  color:white;
+  padding:7px 10px;
+  border-radius:8px;
+  font-size:11px;
+}
+
+#result{
+  width:100%;
+  min-height:500px;
+  border:none;
+  outline:none;
+  resize:vertical;
+  border-radius:0;
+  background:#0f172a;
+  color:#e2e8f0;
+  font-family:Consolas,monospace;
+  font-size:13px;
+  line-height:1.7;
+  padding:20px;
+}
+
+/* =====================================================
+LOADING
+===================================================== */
+
+.loading{
+  display:none;
+  text-align:center;
+  padding:25px;
+}
+
+.spinner{
+  width:34px;
+  height:34px;
+  border:4px solid #e5e7eb;
+  border-top-color:var(--primary);
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  margin:0 auto 10px;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* =====================================================
+TOAST
+===================================================== */
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:999;
+  background:#111827;
+  color:white;
+  padding:13px 17px;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  transform:translateY(100px);
+  opacity:0;
+  transition:.3s;
+  font-size:13px;
+}
+
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+  padding:30px 0 40px;
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:1000px){
+
+  .generator-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .quick-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .visual-check-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:700px){
+
+  .container{
+    width:94%;
+  }
+
+  .nav{
+    height:auto;
+    padding:12px 0;
+  }
+
+  .brand-sub{
+    display:none;
+  }
+
+  .hero{
+    padding:26px 22px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .generator-grid,
+  .quick-grid,
+  .form-grid,
+  .dynamic-grid,
+  .visual-grid{
+    grid-template-columns:1fr;
+  }
+
+  .character-grid{
+    grid-template-columns:1fr;
+  }
+
+  .visual-check-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .workspace-body{
+    padding:17px;
+  }
+
+  .workspace-top{
+    padding:17px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .actions .btn{
+    width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <div class="brand">
+      <div class="logo">A</div>
+
+      <div>
+        <div class="brand-title">Ardi EduAI</div>
+        <div class="brand-sub">
+          AI Learning Content Generator
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="openHistory()">
+        🕘 Riwayat
+      </button>
+
+      <button class="nav-btn" onclick="newPrompt()">
+        ＋ Baru
+      </button>
+    </div>
+
+  </div>
+</header>
+
+
+<main class="container">
+
+<!-- =====================================================
+HERO
+===================================================== -->
+
+<section class="hero">
+
+  <div class="hero-badge">
+    ✨ AI LEARNING CONTENT GENERATOR V6.3
+  </div>
+
+  <h1>
+    Satu Ide.<br>
+    Banyak Kreasi.
+  </h1>
+
+  <p>
+    Buat media pembelajaran, materi, presentasi, LKPD,
+    game, HTML interaktif, RPM Pembelajaran Mendalam,
+    hingga blanko nilai dan pengolahan asesmen dengan bantuan AI.
+  </p>
+
+  <div class="hero-author">
+    Developed by Ardi • Adaptive Learning • Deep Learning • Visual Design
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+STATS
+===================================================== -->
+
+<section class="stats">
+
+  <div class="stat">
+    <div class="stat-number">8+</div>
+    <div class="stat-label">Generator Pembelajaran</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-number">1–6</div>
+    <div class="stat-label">Adaptive Class Engine</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-number">A–C</div>
+    <div class="stat-label">Fase Otomatis</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-number">∞</div>
+    <div class="stat-label">Ide Pembelajaran</div>
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+QUICK START
+===================================================== -->
+
+<section class="section">
+
+  <div class="section-head">
+    <div>
+      <div class="section-title">⚡ Quick Start</div>
+      <div class="section-desc">
+        Klik contoh untuk langsung mengisi form.
+      </div>
+    </div>
+  </div>
+
+  <div class="quick-grid">
+
+    <button class="quick-card"
+      onclick="loadQuickStart('pai')">
+
+      <div class="quick-icon">🕌</div>
+
+      <div class="quick-title">
+        PAI Kelas 6
+      </div>
+
+      <div class="quick-sub">
+        Makanan Halal dan Haram
+      </div>
+
+    </button>
+
+
+    <button class="quick-card"
+      onclick="loadQuickStart('ipas')">
+
+      <div class="quick-icon">🐾</div>
+
+      <div class="quick-title">
+        IPAS Kelas 3
+      </div>
+
+      <div class="quick-sub">
+        Hewan di Sekitar Kita
+      </div>
+
+    </button>
+
+
+    <button class="quick-card"
+      onclick="loadQuickStart('math')">
+
+      <div class="quick-icon">🚀</div>
+
+      <div class="quick-title">
+        Matematika Kelas 2
+      </div>
+
+      <div class="quick-sub">
+        Penjumlahan
+      </div>
+
+    </button>
+
+
+    <button class="quick-card"
+      onclick="loadQuickStart('pancasila')">
+
+      <div class="quick-icon">🇮🇩</div>
+
+      <div class="quick-title">
+        Pancasila Kelas 4
+      </div>
+
+      <div class="quick-sub">
+        Nilai-nilai Pancasila
+      </div>
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+GENERATOR
+===================================================== -->
+
+<section class="section">
+
+  <div class="section-head">
+
+    <div>
+      <div class="section-title">
+        🧩 Pilih Generator
+      </div>
+
+      <div class="section-desc">
+        Pilih jenis hasil pembelajaran yang ingin dibuat.
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="generator-grid">
+
+    <button
+      class="generator-card active"
+      data-type="media"
+      onclick="selectContentType('media')">
+
+      <div class="generator-icon">🎨</div>
+
+      <h3>Media Interaktif</h3>
+
+      <p>
+        Media visual dengan interaksi,
+        quiz, feedback, dan aktivitas.
+      </p>
+
+    </button>
+
+
+    <button
+      class="generator-card"
+      data-type="materi"
+      onclick="selectContentType('materi')">
+
+      <div class="generator-icon">📚</div>
+
+      <h3>Materi Pembelajaran</h3>
+
+      <p>
+        Bahan ajar lengkap dengan hook,
+        aktivitas, evaluasi dan refleksi.
+      </p>
+
+    </button>
+
+
+    <button
+      class="generator-card"
+      data-type="presentation"
+      onclick="selectContentType('presentation')">
+
+      <div class="generator-icon">📊</div>
+
+      <h3>Presentasi / Slide</h3>
+
+      <p>
+        Rancangan presentasi visual,
+        storytelling dan interaktif.
+      </p>
+
+    </button>
+
+
+    <button
+      class="generator-card"
+      data-type="lkpd"
+      onclick="selectContentType('lkpd')">
+
+      <div class="generator-icon">📋</div>
+
+      <h3>LKPD</h3>
+
+      <p>
+        LKPD ramah anak dengan aktivitas,
+        tantangan, latihan dan refleksi.
+      </p>
+
+    </button>
+
+
+    <button
+      class="generator-card"
+      data-type="game"
+      onclick="selectContentType('game')">
+
+      <div class="generator-icon">🎮</div>
+
+      <h3>Game / Kuis</h3>
+
+      <p>
+        Kuis edukatif dengan skor,
+        level, reward dan feedback.
+      </p>
+
+    </button>
+
+
+    <button
+      class="generator-card"
+      data-type="html"
+      onclick="selectContentType('html')">
+
+      <div class="generator-icon">💻</div>
+
+      <h3>HTML Interaktif</h3>
+
+      <p>
+        Modul digital, quiz dan game
+        yang dapat dikembangkan menjadi HTML.
+      </p>
+
+    </button>
+
+
+    <button
+      class="generator-card"
+      data-type="rpm"
+      onclick="selectContentType('rpm')">
+
+      <div class="generator-icon">📋</div>
+
+      <h3>RPM Pembelajaran Mendalam</h3>
+
+      <p>
+        Rencana Pembelajaran Mendalam
+        dengan pengalaman memahami,
+        mengaplikasi dan merefleksi.
+      </p>
+
+    </button>
+
+
+    <button
+      class="generator-card"
+      data-type="blankoNilai"
+      onclick="selectContentType('blankoNilai')">
+
+      <div class="generator-icon">📊</div>
+
+      <h3>Blanko Nilai & Asesmen</h3>
+
+      <p>
+        Blanko nilai, ketercapaian TP,
+        deskripsi dan tindak lanjut.
+      </p>
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+WORKSPACE
+===================================================== -->
+
+<section class="section">
+
+<div class="workspace">
+
+  <div class="workspace-top">
+
+    <div>
+      <div class="workspace-title">
+        🛠️ Workspace
+      </div>
+
+      <div class="current-generator"
+           id="currentGenerator">
+        🎨 Media Interaktif
+      </div>
+    </div>
+
+    <div>
+      <span class="help">
+        V6.3
+      </span>
+    </div>
+
+  </div>
+
+
+  <!-- STEPS -->
+
+  <div class="steps">
+
+    <div class="step active" id="step1">
+      <div class="step-number">1</div>
+      <span>Pilih Konten</span>
+    </div>
+
+    <div class="step" id="step2">
+      <div class="step-number">2</div>
+      <span>Pembelajaran</span>
+    </div>
+
+    <div class="step" id="step3">
+      <div class="step-number">3</div>
+      <span>Karakter & Visual</span>
+    </div>
+
+    <div class="step" id="step4">
+      <div class="step-number">4</div>
+      <span>Generate AI</span>
+    </div>
+
+  </div>
+
+
+  <div class="workspace-body">
+
+    <!-- =================================================
+    DATA PEMBELAJARAN
+    ================================================= -->
+
+    <div class="section-title">
+      📚 Data Pembelajaran
+    </div>
+
+    <div class="section-desc" style="margin-bottom:18px">
+      Isi data utama agar AI dapat membuat konten yang sesuai.
+    </div>
+
+
+    <div class="form-grid">
+
+      <!-- MAPEL -->
+
+      <div class="form-group">
+
+        <label>
+          Mata Pelajaran
+        </label>
+
+        <select id="mapel"
+                onchange="updateMapelVisibility()">
+
+          <option>Pendidikan Agama Islam dan Budi Pekerti</option>
+          <option>Pendidikan Pancasila</option>
+          <option>Bahasa Indonesia</option>
+          <option>Matematika</option>
+          <option>IPAS</option>
+          <option>PJOK</option>
+          <option>Seni dan Budaya</option>
+          <option>Bahasa Inggris</option>
+          <option>Bahasa Daerah</option>
+          <option>Informatika</option>
+          <option>Pramuka</option>
+          <option>Lainnya</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group"
+           id="mapelLainnyaBox"
+           style="display:none">
+
+        <label>
+          Nama Mata Pelajaran Lainnya
+        </label>
+
+        <input
+          id="mapelLainnya"
+          placeholder="Contoh: Bahasa Arab">
+
+      </div>
+
+
+      <!-- KELAS -->
+
+      <div class="form-group">
+
+        <label>
+          Kelas
+        </label>
+
+        <select id="kelas"
+                onchange="updateClassInfo()">
+
+          <option>Kelas 1 SD</option>
+          <option>Kelas 2 SD</option>
+          <option>Kelas 3 SD</option>
+          <option>Kelas 4 SD</option>
+          <option>Kelas 5 SD</option>
+          <option selected>Kelas 6 SD</option>
+
+        </select>
+
+      </div>
+
+
+      <!-- MATERI -->
+
+      <div class="form-group full">
+
+        <label>
+          Materi / Topik
+        </label>
+
+        <input
+          id="materi"
+          placeholder="Contoh: Makanan Halal dan Haram">
+
+      </div>
+
+
+      <!-- TUJUAN -->
+
+      <div class="form-group full">
+
+        <label>
+          Tujuan Pembelajaran
+        </label>
+
+        <textarea
+          id="tujuan"
+          placeholder="Contoh: Siswa mampu menjelaskan perbedaan makanan halal dan haram serta menerapkannya dalam kehidupan sehari-hari."></textarea>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+    ADAPTIVE INFO
+    ================================================= -->
+
+    <div class="adaptive-box">
+
+      <div class="adaptive-title">
+        🧠 Adaptive Class Engine
+      </div>
+
+      <div
+        class="adaptive-content"
+        id="classInfo">
+
+        Kelas 6 SD • Fase C
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+    CHARACTER
+    ================================================= -->
+
+    <div class="section-title">
+      🧒 Karakter Siswa
+    </div>
+
+    <div class="section-desc" style="margin-bottom:12px">
+      Pilih karakter belajar yang ingin diprioritaskan AI.
+    </div>
+
+
+    <div class="character-grid">
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Aktif dan suka bermain"
+               name="character">
+        🎮 Aktif dan suka bermain
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Suka visual, gambar, dan warna"
+               name="character">
+        🎨 Suka visual, gambar, dan warna
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Suka berdiskusi dan berbicara"
+               name="character">
+        💬 Suka berdiskusi dan berbicara
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Suka bekerja sama"
+               name="character">
+        🤝 Suka bekerja sama
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Suka mencoba dan bereksperimen"
+               name="character">
+        🧪 Suka mencoba dan bereksperimen
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Suka membaca dan menulis"
+               name="character">
+        📖 Suka membaca dan menulis
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Suka audio dan video"
+               name="character">
+        🎧 Suka audio dan video
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Suka tantangan"
+               name="character">
+        🏆 Suka tantangan
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Kreatif"
+               name="character">
+        ✨ Kreatif
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Membutuhkan tahapan sederhana"
+               name="character">
+        🪜 Membutuhkan tahapan sederhana
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Cepat memahami dan butuh tantangan"
+               name="character">
+        🚀 Cepat memahami
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Kemampuan beragam"
+               name="character">
+        👥 Kemampuan beragam
+      </label>
+
+      <label class="check-item">
+        <input type="checkbox"
+               value="Karakter umum siswa SD"
+               name="character">
+        🧒 Karakter umum siswa SD
+      </label>
+
+      <label class="check-item">
+
+        <input type="checkbox"
+               id="characterOtherCheck"
+               value="Lainnya"
+               name="character"
+               onchange="toggleCharacterOther()">
+
+        ✏️ Lainnya
+
+      </label>
+
+    </div>
+
+
+    <div
+      id="characterOtherBox"
+      style="display:none;margin-top:10px">
+
+      <input
+        id="characterOther"
+        placeholder="Tuliskan karakter siswa lainnya">
+
+    </div>
+
+
+    <!-- =================================================
+    GENERAL SETTINGS
+    ================================================= -->
+
+    <div class="dynamic-panel">
+
+      <div class="dynamic-title">
+        ⚙️ Pengaturan Umum
+      </div>
+
+      <div class="dynamic-grid">
+
+        <div class="form-group">
+
+          <label>
+            Platform
+          </label>
+
+          <select id="platform">
+
+            <option>Canva AI</option>
+            <option>AI Umum</option>
+            <option>HTML Interaktif</option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Tingkat Kesulitan
+          </label>
+
+          <select id="kesulitan">
+
+            <option>Mudah</option>
+            <option selected>Sedang</option>
+            <option>Sulit</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+    VISUAL DESIGN ENGINE
+    ================================================= -->
+
+    <div class="visual-engine">
+
+      <div class="visual-header">
+
+        <div class="visual-logo">
+          🎨
+        </div>
+
+        <div>
+
+          <div class="visual-title">
+            Visual Design Engine
+          </div>
+
+          <div class="visual-subtitle">
+            Buat hasil pembelajaran lebih menarik,
+            colorful, visual, dan ramah anak.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="visual-grid">
+
+        <!-- THEME -->
+
+        <div class="form-group">
+
+          <label>
+            🌈 Tema Visual
+          </label>
+
+          <select id="visualTheme">
+
+            <option selected>
+              ✨ AI memilih tema otomatis
+            </option>
+
+            <option>
+              🌈 Ceria & Colorful
+            </option>
+
+            <option>
+              🧸 Dunia Anak
+            </option>
+
+            <option>
+              🌿 Alam & Edukatif
+            </option>
+
+            <option>
+              🚀 Petualangan
+            </option>
+
+            <option>
+              🕌 Islami Elegan
+            </option>
+
+            <option>
+              🇮🇩 Merah Putih Nasional
+            </option>
+
+            <option>
+              🔬 Sains & Eksplorasi
+            </option>
+
+            <option>
+              🎨 Kreatif & Artistik
+            </option>
+
+            <option>
+              💎 Modern Premium
+            </option>
+
+            <option>
+              🧼 Minimalis Modern
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- PALETTE -->
+
+        <div class="form-group">
+
+          <label>
+            🎨 Palet Warna
+          </label>
+
+          <select id="colorPalette">
+
+            <option selected>
+              ✨ AI memilih sesuai materi
+            </option>
+
+            <option>🌈 Rainbow</option>
+            <option>🔵 Biru Cerah</option>
+            <option>🟢 Hijau Alam</option>
+            <option>🟠 Oranye Ceria</option>
+            <option>🟣 Ungu Kreatif</option>
+            <option>🔴 Merah Putih</option>
+            <option>🩵 Pastel</option>
+
+          </select>
+
+        </div>
+
+
+        <!-- ILLUSTRATION -->
+
+        <div class="form-group">
+
+          <label>
+            🖼️ Gaya Ilustrasi
+          </label>
+
+          <select id="illustrationStyle">
+
+            <option selected>
+              🎯 Sesuaikan Materi
+            </option>
+
+            <option>🧸 Kartun Anak</option>
+            <option>📖 Ilustrasi Buku Cerita</option>
+            <option>🎨 Flat Illustration</option>
+            <option>🧑‍🚀 Karakter 3D</option>
+            <option>🐾 Cute Cartoon</option>
+            <option>🌿 Hand-drawn</option>
+            <option>📚 Edukasi Profesional</option>
+            <option>🤖 Futuristic</option>
+
+          </select>
+
+        </div>
+
+
+        <!-- DENSITY -->
+
+        <div class="form-group">
+
+          <label>
+            📐 Kepadatan Visual
+          </label>
+
+          <select id="visualDensity">
+
+            <option selected>Seimbang</option>
+            <option>🎨 Kaya Visual</option>
+            <option>🧼 Minimal</option>
+
+          </select>
+
+        </div>
+
+
+        <!-- ELEMENTS -->
+
+        <div class="form-group visual-elements">
+
+          <label>
+            ✨ Elemen Visual
+          </label>
+
+          <div class="visual-check-grid">
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Ilustrasi utama"
+                checked>
+              🖼️ Ilustrasi utama
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Karakter anak">
+              🧒 Karakter anak
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Gambar objek sesuai materi"
+                checked>
+              🐾 Objek materi
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Speech bubble">
+              💬 Speech bubble
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Ikon dan badge"
+                checked>
+              ⭐ Ikon & badge
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Kotak tantangan">
+              🎯 Kotak tantangan
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Reward dan bintang">
+              🏆 Reward
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Ornamen dekoratif">
+              🎨 Ornamen
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Infografis">
+              📊 Infografis
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Gambar untuk aktivitas mengamati">
+              🔍 Ayo Amati
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Gambar untuk mencocokkan">
+              🧩 Mencocokkan
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Ekspresi karakter">
+              😀 Ekspresi
+            </label>
+
+            <label class="visual-check">
+              <input
+                type="checkbox"
+                name="visualElement"
+                value="Efek visual ringan">
+              ✨ Efek visual
+            </label>
+
+          </div>
+
+        </div>
+
+
+        <!-- MODE -->
+
+        <div class="form-group">
+
+          <label>
+            🖨️ Mode Tampilan
+          </label>
+
+          <select id="visualMode">
+
+            <option selected>📱 Digital Berwarna</option>
+            <option>🖨️ Cetak Berwarna</option>
+            <option>🧾 Ramah Cetak</option>
+            <option>✨ AI memilih otomatis</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="visual-note">
+
+        💡 <b>Visual Engine aktif:</b>
+        Ardi EduAI akan mengarahkan AI agar hasil tidak
+        dominan hitam-putih. Warna, ilustrasi, ikon,
+        badge, aktivitas visual, dan tata letak akan
+        disesuaikan dengan materi serta kelas siswa.
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+    DYNAMIC OPTIONS
+    ================================================= -->
+
+    <div class="dynamic-panel">
+
+      <div class="dynamic-title">
+        🧩 Pengaturan Generator
+      </div>
+
+      <div id="dynamicOptions"></div>
+
+    </div>
+
+
+    <!-- =================================================
+    ACTION
+    ================================================= -->
+
+    <div class="actions">
+
+      <button
+        class="btn btn-secondary"
+        onclick="newPrompt()">
+
+        ↻ Reset
+
+      </button>
+
+      <button
+        class="btn btn-primary"
+        onclick="generatePrompt()">
+
+        ✨ Generate dengan AI
+
+      </button>
+
+    </div>
+
+
+    <!-- =================================================
+    LOADING
+    ================================================= -->
+
+    <div
+      class="loading"
+      id="loading">
+
+      <div class="spinner"></div>
+
+      <b>AI sedang membuat pembelajaran...</b>
+
+      <div class="help">
+        Sedang menyusun konten, aktivitas,
+        asesmen, dan desain visual.
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+    RESULT
+    ================================================= -->
+
+    <div
+      class="result-box"
+      id="resultBox">
+
+      <div class="result-head">
+
+        <div class="result-title">
+          ✨ Hasil Ardi EduAI
+        </div>
+
+        <div class="result-actions">
+
+          <button onclick="copyPrompt()">
+            📋 Salin
+          </button>
+
+          <button onclick="savePrompt()">
+            💾 Simpan
+          </button>
+
+          <button onclick="regeneratePrompt()">
+            🔄 Generate Lagi
+          </button>
+
+        </div>
+
+      </div>
+
+      <textarea
+        id="result"
+        spellcheck="false"></textarea>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div>
+    <b>Ardi EduAI V6.3</b>
+  </div>
+
+  <div style="margin-top:5px">
+    AI Learning Content Generator •
+    Adaptive Class • Deep Learning • Visual Design Engine
+  </div>
+
+</footer>
+
+
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+<script>
+
+/* =====================================================
+CONFIG
+===================================================== */
+
+const API_URL = "http://localhost:3000/generate";
+
+let currentContentType = "media";
+
+const HISTORY_KEY = "aiLearningHistory";
+
+
+/* =====================================================
+GENERATOR DATA
+===================================================== */
+
+const generatorNames = {
+
+  media:"🎨 Media Interaktif",
+
+  materi:"📚 Materi Pembelajaran",
+
+  presentation:"📊 Presentasi / Slide",
+
+  lkpd:"📋 LKPD",
+
+  game:"🎮 Game / Kuis",
+
+  html:"💻 HTML Interaktif",
+
+  rpm:"📋 RPM Pembelajaran Mendalam",
+
+  blankoNilai:"📊 Blanko Nilai & Asesmen"
+
+};
+
+
+const generatorIcons = {
+
+  media:"🎨",
+
+  materi:"📚",
+
+  presentation:"📊",
+
+  lkpd:"📋",
+
+  game:"🎮",
+
+  html:"💻",
+
+  rpm:"📋",
+
+  blankoNilai:"📊"
+
+};
+
+
+/* =====================================================
+DYNAMIC OPTIONS
+===================================================== */
+
+const options = {
+
+  media:`
+
+    <div class="dynamic-grid">
+
+      <div class="form-group">
+        <label>Jenis Media</label>
+
+        <select id="jenisMedia">
+
+          <option>Presentasi Interaktif</option>
+          <option>Infografis Interaktif</option>
+          <option>Materi Klik</option>
+          <option>Media Eksplorasi</option>
+          <option>Kartu Pembelajaran</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Gaya Media</label>
+
+        <select id="gayaMedia">
+
+          <option>Ceria dan Colorful</option>
+          <option>Modern</option>
+          <option>Minimalis</option>
+          <option>Storytelling</option>
+          <option>Visual</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group full">
+        <label>Fitur Media</label>
+
+        <input
+          id="mediaFitur"
+          value="Animasi, Interaksi Klik, Quiz, Feedback, Skor, Ilustrasi, Navigasi">
+
+      </div>
+
+    </div>
+  `,
+
+
+  materi:`
+
+    <div class="dynamic-grid">
+
+      <div class="form-group">
+        <label>Jenis Materi</label>
+
+        <select id="jenisMateri">
+
+          <option>Materi Interaktif</option>
+          <option>Materi Guru</option>
+          <option>Materi Ramah Siswa</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Gaya Materi</label>
+
+        <select id="gayaMateri">
+
+          <option>Ceria dan Menarik</option>
+          <option>Storytelling</option>
+          <option>Eksploratif</option>
+          <option>Modern dan Profesional</option>
+          <option>Sederhana dan Visual</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Panjang Materi</label>
+
+        <select id="panjangMateri">
+
+          <option>Ringkas</option>
+          <option selected>Sedang</option>
+          <option>Lengkap</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Fitur</label>
+
+        <input
+          id="materiFitur"
+          value="Hook, Pertanyaan Pemantik, Ilustrasi, Aktivitas, Tantangan, Evaluasi, Refleksi, Diferensiasi">
+
+      </div>
+
+    </div>
+  `,
+
+
+  presentation:`
+
+    <div class="dynamic-grid">
+
+      <div class="form-group">
+        <label>Jenis Presentasi</label>
+
+        <select id="jenisPresentasi">
+
+          <option>Presentasi Materi</option>
+          <option>Presentasi Interaktif</option>
+          <option>Storytelling</option>
+          <option>Problem Based Learning</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Gaya Presentasi</label>
+
+        <select id="gayaPresentasi">
+
+          <option>Modern</option>
+          <option>Colorful</option>
+          <option>Minimalis</option>
+          <option>Profesional</option>
+          <option>Ramah Anak</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Jumlah Slide</label>
+
+        <select id="jumlahSlide">
+
+          <option>5–7 slide</option>
+          <option selected>8–10 slide</option>
+          <option>11–15 slide</option>
+          <option>16–20 slide</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Fitur</label>
+
+        <input
+          id="presentationFitur"
+          value="Hook, Pertanyaan Pemantik, Ilustrasi, Infografis, Quiz, Diskusi, Refleksi">
+
+      </div>
+
+    </div>
+  `,
+
+
+  lkpd:`
+
+    <div class="dynamic-grid">
+
+      <div class="form-group">
+        <label>Jenis LKPD</label>
+
+        <select id="jenisLKPD">
+
+          <option>Individu</option>
+          <option>Kelompok</option>
+          <option>Eksplorasi</option>
+          <option>Problem Solving</option>
+          <option>Proyek Mini</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Gaya LKPD</label>
+
+        <select id="gayaLKPD">
+
+          <option>Ceria</option>
+          <option>Visual</option>
+          <option>Modern</option>
+          <option>Sederhana</option>
+          <option>Profesional</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>Fitur LKPD</label>
+
+        <input
+          id="lkpdFitur"
+          value="Pemantik, Mengamati, Mencoba, Diskusi, Tantangan, Latihan, Evaluasi, Refleksi, Rubrik">
+
+      </div>
+
+    </div>
+  `,
+
+
+  game:`
+
+    <div class="dynamic-grid">
+
+      <div class="form-group">
+        <label>Jenis Game</label>
+
+        <select id="jenisGame">
+
+          <option>Kuis Cepat</option>
+          <option>Petualangan</option>
+          <option>Benar atau Salah</option>
+          <option>Cocokkan</option>
+          <option>Tebak Gambar</option>
+          <option>Level Challenge</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Gaya Game</label>
+
+        <select id="gayaGame">
+
+          <option>Ceria</option>
+          <option>Petualangan</option>
+          <option>Kompetitif</option>
+          <option>Storytelling</option>
+          <option>Minimalis</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Jumlah Soal</label>
+
+        <select id="jumlahSoal">
+
+          <option>5 soal</option>
+          <option selected>10 soal</option>
+          <option>15 soal</option>
+          <option>20 soal</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Fitur Game</label>
+
+        <input
+          id="gameFitur"
+          value="Skor, Level, Feedback, Reward, Animasi">
+
+      </div>
+
+    </div>
+  `,
+
+
+  html:`
+
+    <div class="dynamic-grid">
+
+      <div class="form-group">
+        <label>Jenis HTML</label>
+
+        <select id="jenisHTML">
+
+          <option>Materi Interaktif</option>
+          <option>Quiz Interaktif</option>
+          <option>Game Edukasi</option>
+          <option>Modul Digital</option>
+          <option>Learning Journey</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Gaya HTML</label>
+
+        <select id="gayaHTML">
+
+          <option>Modern</option>
+          <option>Colorful</option>
+          <option>Minimalis</option>
+          <option>Futuristik</option>
+          <option>Ramah Anak</option>
+
+        </select>
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>Fitur HTML</label>
+
+        <input
+          id="htmlFitur"
+          value="Progress, Navigasi, Quiz, Feedback, Skor, Animasi, Refleksi">
+
+      </div>
+
+    </div>
+  `,
+
+
+  rpm:`
+
+    <div class="dynamic-grid">
+
+      <div class="form-group">
+        <label>Satuan Pendidikan</label>
+
+        <input
+          id="satuanPendidikan"
+          placeholder="Contoh: SD Negeri 050766 Padang Langkat">
+
+      </div>
+
+
+      <div class="form-group">
+        <label>Nama Guru</label>
+
+        <input
+          id="namaGuru"
+          placeholder="Nama guru">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Semester</label>
+
+        <select id="semester">
+
+          <option>Ganjil</option>
+          <option>Genap</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Tahun Pelajaran</label>
+
+        <input
+          id="tahunPelajaran"
+          value="2026/2027">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Jenis RPM</label>
+
+        <select id="jenisRPM">
+
+          <option>RPM Ringkas</option>
+          <option selected>RPM Lengkap</option>
+          <option>RPM Intrakurikuler</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Alokasi Waktu</label>
+
+        <select id="alokasiWaktu">
+
+          <option selected>2 JP</option>
+          <option>3 JP</option>
+          <option>4 JP</option>
+          <option>2 pertemuan</option>
+          <option>3 pertemuan</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Model Pedagogis</label>
+
+        <select id="modelPedagogis">
+
+          <option>Kontekstual dan aktif</option>
+          <option>Inquiry</option>
+          <option>Problem Based Learning</option>
+          <option>Project Based Learning</option>
+          <option>Cooperative Learning</option>
+          <option>Discovery Learning</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Format RPM</label>
+
+        <select id="formatRPM">
+
+          <option>Tabel</option>
+          <option selected>Tabel + Narasi</option>
+          <option>Naratif</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          Capaian Pembelajaran
+          <span>opsional</span>
+        </label>
+
+        <textarea
+          id="cp"
+          placeholder="Tempelkan CP resmi jika tersedia. Jangan mengarang CP."></textarea>
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          Dimensi Profil Lulusan
+        </label>
+
+        <input
+          id="dimensi"
+          value="Pilih yang paling relevan dengan tujuan dan aktivitas pembelajaran">
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          Fitur RPM
+        </label>
+
+        <input
+          id="rpmFitur"
+          value="Asesmen awal, asesmen formatif, asesmen sumatif, diferensiasi, rubrik, refleksi, tindak lanjut">
+
+      </div>
+
+    </div>
+  `,
+
+
+  blankoNilai:`
+
+    <div class="dynamic-grid">
+
+      <div class="form-group">
+        <label>Satuan Pendidikan</label>
+
+        <input
+          id="satuanPendidikan"
+          placeholder="Nama sekolah">
+
+      </div>
+
+
+      <div class="form-group">
+        <label>Nama Guru</label>
+
+        <input
+          id="namaGuru"
+          placeholder="Nama guru">
+
+      </div>
+
+
+      <div class="form-group">
+        <label>Semester</label>
+
+        <select id="semester">
+
+          <option>Ganjil</option>
+          <option>Genap</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+        <label>Tahun Pelajaran</label>
+
+        <input
+          id="tahunPelajaran"
+          value="2026/2027">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Model Pengolahan</label>
+
+        <select id="modelPengolahan">
+
+          <option>Sederhana — Rekap Nilai</option>
+          <option>Formatif + Sumatif</option>
+          <option>Berbasis Tujuan Pembelajaran</option>
+          <option selected>
+            Lengkap — Nilai + Ketercapaian + Deskripsi
+          </option>
+          <option>Sesuai Kebijakan Satuan Pendidikan</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Jumlah Murid</label>
+
+        <input
+          id="jumlahMurid"
+          type="number"
+          value="30"
+          min="1">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Jumlah Formatif</label>
+
+        <input
+          id="jumlahFormatif"
+          type="number"
+          value="6"
+          min="1">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Jumlah Sumatif Akhir Lingkup</label>
+
+        <input
+          id="jumlahSumatifLingkup"
+          type="number"
+          value="3"
+          min="1">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>SAS</label>
+
+        <select id="sas">
+
+          <option>Ya</option>
+          <option>Tidak</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Deskripsi Capaian</label>
+
+        <select id="deskripsi">
+
+          <option>Ya</option>
+          <option>Tidak</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>KKTP</label>
+
+        <select id="kktp">
+
+          <option>Ya</option>
+          <option>Tidak</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Bobot</label>
+
+        <input
+          id="bobot"
+          value="Sesuai kebijakan satuan pendidikan">
+
+      </div>
+
+    </div>
+
+  `
+
+};
+
+
+/* =====================================================
+SELECT CONTENT TYPE
+===================================================== */
+
+function selectContentType(type){
+
+  currentContentType = type;
+
+  document
+    .querySelectorAll(".generator-card")
+    .forEach(card => {
+
+      card.classList.toggle(
+        "active",
+        card.dataset.type === type
+      );
+
+    });
+
+
+  document.getElementById("currentGenerator").textContent =
+    generatorNames[type] || type;
+
+
+  renderDynamicOptions();
+
+  updateStepState();
+
+  window.scrollTo({
+    top:document.querySelector(".workspace").offsetTop - 80,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+RENDER OPTIONS
+===================================================== */
+
+function renderDynamicOptions(){
+
+  const panel =
+    document.getElementById("dynamicOptions");
+
+  panel.innerHTML =
+    options[currentContentType] || "";
+
+}
+
+
+/* =====================================================
+MAPEL
+===================================================== */
+
+function updateMapelVisibility(){
+
+  const value =
+    document.getElementById("mapel").value;
+
+  document.getElementById("mapelLainnyaBox").style.display =
+    value === "Lainnya"
+      ? "flex"
+      : "none";
+
+}
+
+
+/* =====================================================
+CLASS INFO
+===================================================== */
+
+function updateClassInfo(){
+
+  const kelas =
+    document.getElementById("kelas").value;
+
+  const number =
+    Number((kelas.match(/\d+/)||[6])[0]);
+
+  let phase = "Fase C";
+
+  if(number <= 2){
+    phase = "Fase A";
+  }
+  else if(number <= 4){
+    phase = "Fase B";
+  }
+
+  const descriptions = {
+
+    1:
+      "Fase A • Bahasa sangat sederhana • visual besar • aktivitas memilih, menunjuk, mencocokkan.",
+
+    2:
+      "Fase A • Bahasa sederhana • aktivitas konkret • gambar dan objek nyata.",
+
+    3:
+      "Fase B • Mulai mengenalkan konsep • klasifikasi • pengamatan • alasan sederhana.",
+
+    4:
+      "Fase B • Konsep lebih terstruktur • diskusi • perbandingan • pemecahan masalah.",
+
+    5:
+      "Fase C • Analisis sederhana • kasus nyata • eksperimen • problem solving.",
+
+    6:
+      "Fase C • Berpikir kritis • analisis • evaluasi • refleksi • masalah nyata."
+
+  };
+
+  document.getElementById("classInfo").textContent =
+    `Kelas ${number} SD • ${phase} • ${descriptions[number]}`;
+
+}
+
+
+/* =====================================================
+CHARACTER
+===================================================== */
+
+function toggleCharacterOther(){
+
+  const checked =
+    document.getElementById(
+      "characterOtherCheck"
+    ).checked;
+
+  document.getElementById(
+    "characterOtherBox"
+  ).style.display =
+    checked ? "block" : "none";
+
+}
+
+
+function getCharacterData(){
+
+  const values = [];
+
+  document
+    .querySelectorAll(
+      'input[name="character"]:checked'
+    )
+    .forEach(item => {
+
+      if(item.value !== "Lainnya"){
+        values.push(item.value);
+      }
+
+    });
+
+
+  const other =
+    document
+      .getElementById("characterOther")
+      ?.value
+      .trim();
+
+  if(other){
+    values.push(other);
+  }
+
+  return values;
+
+}
+
+
+/* =====================================================
+GET MAPEL
+===================================================== */
+
+function getMapel(){
+
+  const mapel =
+    document.getElementById("mapel").value;
+
+  if(mapel === "Lainnya"){
+
+    return (
+      document
+        .getElementById("mapelLainnya")
+        .value
+        .trim() || "Mata Pelajaran Lainnya"
+    );
+
+  }
+
+  return mapel;
+
+}
+
+
+/* =====================================================
+GET VISUAL DATA
+===================================================== */
+
+function getVisualData(){
+
+  const elements = [];
+
+  document
+    .querySelectorAll(
+      'input[name="visualElement"]:checked'
+    )
+    .forEach(item => {
+
+      elements.push(item.value);
+
+    });
+
+
+  return {
+
+    visualTheme:
+      document.getElementById("visualTheme").value,
+
+    colorPalette:
+      document.getElementById("colorPalette").value,
+
+    illustrationStyle:
+      document.getElementById("illustrationStyle").value,
+
+    visualDensity:
+      document.getElementById("visualDensity").value,
+
+    visualElements:
+      elements,
+
+    visualMode:
+      document.getElementById("visualMode").value
+
+  };
+
+}
+
+
+/* =====================================================
+GET DYNAMIC DATA
+===================================================== */
+
+function getDynamicData(){
+
+  const data = {};
+
+
+  function value(id){
+
+    const el =
+      document.getElementById(id);
+
+    return el ? el.value : "";
+
+  }
+
+
+  switch(currentContentType){
+
+    case "media":
+
+      data.jenisMedia = value("jenisMedia");
+      data.gayaMedia = value("gayaMedia");
+
+      data.fitur =
+        value("mediaFitur")
+          .split(",")
+          .map(x => x.trim())
+          .filter(Boolean);
+
+      break;
+
+
+    case "materi":
+
+      data.jenisMateri = value("jenisMateri");
+      data.gayaMateri = value("gayaMateri");
+      data.panjangMateri = value("panjangMateri");
+
+      data.fitur =
+        value("materiFitur")
+          .split(",")
+          .map(x => x.trim())
+          .filter(Boolean);
+
+      break;
+
+
+    case "presentation":
+
+      data.jenisPresentasi =
+        value("jenisPresentasi");
+
+      data.gayaPresentasi =
+        value("gayaPresentasi");
+
+      data.jumlahSlide =
+        value("jumlahSlide");
+
+      data.fitur =
+        value("presentationFitur")
+          .split(",")
+          .map(x => x.trim())
+          .filter(Boolean);
+
+      break;
+
+
+    case "lkpd":
+
+      data.jenisLKPD =
+        value("jenisLKPD");
+
+      data.gayaLKPD =
+        value("gayaLKPD");
+
+      data.fitur =
+        value("lkpdFitur")
+          .split(",")
+          .map(x => x.trim())
+          .filter(Boolean);
+
+      break;
+
+
+    case "game":
+
+      data.jenisGame =
+        value("jenisGame");
+
+      data.gayaGame =
+        value("gayaGame");
+
+      data.jumlahSoal =
+        value("jumlahSoal");
+
+      data.fitur =
+        value("gameFitur")
+          .split(",")
+          .map(x => x.trim())
+          .filter(Boolean);
+
+      break;
+
+
+    case "html":
+
+      data.jenisHTML =
+        value("jenisHTML");
+
+      data.gayaHTML =
+        value("gayaHTML");
+
+      data.fitur =
+        value("htmlFitur")
+          .split(",")
+          .map(x => x.trim())
+          .filter(Boolean);
+
+      break;
+
+
+    case "rpm":
+
+      data.satuanPendidikan =
+        value("satuanPendidikan");
+
+      data.namaGuru =
+        value("namaGuru");
+
+      data.semester =
+        value("semester");
+
+      data.tahunPelajaran =
+        value("tahunPelajaran");
+
+      data.jenisRPM =
+        value("jenisRPM");
+
+      data.alokasiWaktu =
+        value("alokasiWaktu");
+
+      data.modelPedagogis =
+        value("modelPedagogis");
+
+      data.formatRPM =
+        value("formatRPM");
+
+      data.cp =
+        value("cp");
+
+      data.dimensi =
+        value("dimensi");
+
+      data.fitur =
+        value("rpmFitur");
+
+      break;
+
+
+    case "blankoNilai":
+
+      data.satuanPendidikan =
+        value("satuanPendidikan");
+
+      data.namaGuru =
+        value("namaGuru");
+
+      data.semester =
+        value("semester");
+
+      data.tahunPelajaran =
+        value("tahunPelajaran");
+
+      data.modelPengolahan =
+        value("modelPengolahan");
+
+      data.jumlahMurid =
+        value("jumlahMurid");
+
+      data.jumlahFormatif =
+        value("jumlahFormatif");
+
+      data.jumlahSumatifLingkup =
+        value("jumlahSumatifLingkup");
+
+      data.sas =
+        value("sas");
+
+      data.deskripsi =
+        value("deskripsi");
+
+      data.kktp =
+        value("kktp");
+
+      data.bobot =
+        value("bobot");
+
+      break;
+
+  }
+
+
+  return data;
+
+}
+
+
+/* =====================================================
+FORM DATA
+===================================================== */
+
+function getFormData(){
+
+  return {
+
+    contentType:
+      currentContentType,
+
+    mapel:
+      getMapel(),
+
+    kelas:
+      document.getElementById("kelas").value,
+
+    materi:
+      document.getElementById("materi").value.trim(),
+
+    tujuan:
+      document.getElementById("tujuan").value.trim(),
+
+    character:
+      getCharacterData(),
+
+    platform:
+      document.getElementById("platform").value,
+
+    kesulitan:
+      document.getElementById("kesulitan").value,
+
+    ...getDynamicData(),
+
+    ...getVisualData()
+
+  };
+
+}
+
+
+/* =====================================================
+VALIDATE
+===================================================== */
+
+function validateForm(){
+
+  const data =
+    getFormData();
+
+
+  if(!data.mapel){
+
+    showToast("⚠️ Pilih mata pelajaran.");
+
+    return false;
+
+  }
+
+
+  if(!data.materi){
+
+    showToast("⚠️ Isi materi terlebih dahulu.");
+
+    document
+      .getElementById("materi")
+      .focus();
+
+    return false;
+
+  }
+
+
+  if(!data.tujuan){
+
+    showToast("⚠️ Isi tujuan pembelajaran terlebih dahulu.");
+
+    document
+      .getElementById("tujuan")
+      .focus();
+
+    return false;
+
+  }
+
+
+  return true;
+
+}
+
+
+/* =====================================================
+GENERATE
+===================================================== */
+
+async function generatePrompt(){
+
+  if(!validateForm()){
+    return;
+  }
+
+
+  const data =
+    getFormData();
+
+
+  document.getElementById(
+    "loading"
+  ).style.display = "block";
+
+
+  document.getElementById(
+    "resultBox"
+  ).style.display = "none";
+
+
+  updateStepGenerate();
+
+
+  try{
+
+    const response =
+      await fetch(API_URL,{
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify(data)
+
+      });
+
+
+    const result =
+      await response.json();
+
+
+    if(!response.ok || !result.success){
+
+      throw new Error(
+        result.message ||
+        "Server gagal membuat konten."
+      );
+
+    }
+
+
+    showResult(result.prompt);
+
+    saveToHistory(data,result.prompt);
+
+    showToast(
+      "✅ Konten berhasil dibuat!"
+    );
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    showToast(
+      "❌ Gagal terhubung ke server V6.3. Pastikan server sedang berjalan."
+    );
+
+  }
+  finally{
+
+    document.getElementById(
+      "loading"
+    ).style.display = "none";
+
+  }
+
+}
+
+
+/* =====================================================
+SHOW RESULT
+===================================================== */
+
+function showResult(text){
+
+  const box =
+    document.getElementById("resultBox");
+
+  const result =
+    document.getElementById("result");
+
+
+  result.value =
+    text || "Tidak ada hasil.";
+
+
+  box.style.display =
+    "block";
+
+
+  setTimeout(() => {
+
+    box.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  },100);
+
+}
+
+
+/* =====================================================
+COPY
+===================================================== */
+
+async function copyPrompt(){
+
+  const text =
+    document.getElementById("result").value;
+
+
+  if(!text){
+
+    showToast("Tidak ada hasil untuk disalin.");
+
+    return;
+
+  }
+
+
+  try{
+
+    await navigator.clipboard.writeText(text);
+
+    showToast("📋 Hasil berhasil disalin.");
+
+  }
+  catch{
+
+    const textarea =
+      document.getElementById("result");
+
+    textarea.select();
+
+    document.execCommand("copy");
+
+    showToast("📋 Hasil berhasil disalin.");
+
+  }
+
+}
+
+
+/* =====================================================
+SAVE
+===================================================== */
+
+function savePrompt(){
+
+  const text =
+    document.getElementById("result").value;
+
+
+  if(!text){
+
+    showToast("Tidak ada hasil.");
+
+    return;
+
+  }
+
+
+  const data =
+    getFormData();
+
+
+  saveToHistory(
+    data,
+    text,
+    true
+  );
+
+
+  showToast("💾 Tersimpan ke riwayat.");
+
+}
+
+
+/* =====================================================
+HISTORY
+===================================================== */
+
+function saveToHistory(
+  data,
+  prompt,
+  silent=false
+){
+
+  let history = [];
+
+  try{
+
+    history =
+      JSON.parse(
+        localStorage.getItem(HISTORY_KEY) || "[]"
+      );
+
+  }
+  catch{
+
+    history=[];
+
+  }
+
+
+  history.unshift({
+
+    id:Date.now(),
+
+    date:new Date().toLocaleString("id-ID"),
+
+    type:data.contentType,
+
+    title:
+      `${generatorNames[data.contentType] || data.contentType} — ${data.materi}`,
+
+    data:data,
+
+    prompt:prompt
+
+  });
+
+
+  history =
+    history.slice(0,30);
+
+
+  localStorage.setItem(
+    HISTORY_KEY,
+    JSON.stringify(history)
+  );
+
+
+  if(!silent){
+
+    console.log("Saved to history.");
+
+  }
+
+}
+
+
+function openHistory(){
+
+  let history=[];
+
+  try{
+
+    history =
+      JSON.parse(
+        localStorage.getItem(HISTORY_KEY) || "[]"
+      );
+
+  }
+  catch{
+
+    history=[];
+
+  }
+
+
+  if(!history.length){
+
+    showToast("🕘 Belum ada riwayat.");
+
+    return;
+
+  }
+
+
+  const latest =
+    history[0];
+
+
+  if(confirm(
+    `Riwayat terbaru:\n\n${latest.title}\n${latest.date}\n\nBuka hasil ini?`
+  )){
+
+    showResult(latest.prompt);
+
+  }
+
+}
+
+
+function clearHistory(){
+
+  localStorage.removeItem(HISTORY_KEY);
+
+  showToast("🗑️ Riwayat dihapus.");
+
+}
+
+
+/* =====================================================
+REGENERATE
+===================================================== */
+
+function regeneratePrompt(){
+
+  generatePrompt();
+
+}
+
+
+/* =====================================================
+NEW
+===================================================== */
+
+function newPrompt(){
+
+  document
+    .querySelectorAll(
+      "input, textarea"
+    )
+    .forEach(el => {
+
+      if(
+        el.id !== "kelas" &&
+        el.id !== "mapel" &&
+        el.id !== "platform" &&
+        el.id !== "kesulitan"
+      ){
+
+        if(el.type === "checkbox"){
+          el.checked=false;
+        }
+        else if(
+          el.id !== "tahunPelajaran" &&
+          el.id !== "jumlahMurid" &&
+          el.id !== "jumlahFormatif" &&
+          el.id !== "jumlahSumatifLingkup"
+        ){
+
+          el.value="";
+
+        }
+
+      }
+
+    });
+
+
+  document.getElementById("materi").value="";
+  document.getElementById("tujuan").value="";
+
+
+  document.getElementById(
+    "resultBox"
+  ).style.display="none";
+
+
+  document.getElementById(
+    "characterOtherBox"
+  ).style.display="none";
+
+
+  document.getElementById(
+    "mapelLainnyaBox"
+  ).style.display="none";
+
+
+  renderDynamicOptions();
+
+  showToast("✨ Workspace baru siap.");
+
+}
+
+
+/* =====================================================
+QUICK START
+===================================================== */
+
+function loadQuickStart(type){
+
+  selectContentType("materi");
+
+
+  if(type === "pai"){
+
+    document.getElementById("mapel").value =
+      "Pendidikan Agama Islam dan Budi Pekerti";
+
+    document.getElementById("kelas").value =
+      "Kelas 6 SD";
+
+    document.getElementById("materi").value =
+      "Makanan Halal dan Haram";
+
+    document.getElementById("tujuan").value =
+      "Siswa mampu menjelaskan pengertian makanan halal dan haram, membedakannya, serta menerapkan sikap memilih makanan yang halal dalam kehidupan sehari-hari.";
+
+    document.getElementById("visualTheme").value =
+      "🕌 Islami Elegan";
+
+    document.getElementById("colorPalette").value =
+      "🩵 Pastel";
+
+    document.getElementById("illustrationStyle").value =
+      "🧸 Kartun Anak";
+
+  }
+
+
+  if(type === "ipas"){
+
+    document.getElementById("mapel").value =
+      "IPAS";
+
+    document.getElementById("kelas").value =
+      "Kelas 3 SD";
+
+    document.getElementById("materi").value =
+      "Hewan di Sekitar Kita";
+
+    document.getElementById("tujuan").value =
+      "Siswa mampu mengenali berbagai hewan di sekitar, mengelompokkan berdasarkan cirinya, dan menjelaskan manfaat hewan bagi kehidupan.";
+
+    document.getElementById("visualTheme").value =
+      "🚀 Petualangan";
+
+    document.getElementById("colorPalette").value =
+      "🌈 Rainbow";
+
+    document.getElementById("illustrationStyle").value =
+      "🐾 Cute Cartoon";
+
+  }
+
+
+  if(type === "math"){
+
+    document.getElementById("mapel").value =
+      "Matematika";
+
+    document.getElementById("kelas").value =
+      "Kelas 2 SD";
+
+    document.getElementById("materi").value =
+      "Penjumlahan";
+
+    document.getElementById("tujuan").value =
+      "Siswa mampu melakukan penjumlahan bilangan dengan menggunakan benda konkret dan situasi kehidupan sehari-hari.";
+
+    document.getElementById("visualTheme").value =
+      "🚀 Petualangan";
+
+    document.getElementById("colorPalette").value =
+      "🟠 Oranye Ceria";
+
+    document.getElementById("illustrationStyle").value =
+      "🧑‍🚀 Karakter 3D";
+
+  }
+
+
+  if(type === "pancasila"){
+
+    document.getElementById("mapel").value =
+      "Pendidikan Pancasila";
+
+    document.getElementById("kelas").value =
+      "Kelas 4 SD";
+
+    document.getElementById("materi").value =
+      "Nilai-nilai Pancasila";
+
+    document.getElementById("tujuan").value =
+      "Siswa mampu menjelaskan nilai-nilai Pancasila dan memberikan contoh penerapannya dalam kehidupan sehari-hari.";
+
+    document.getElementById("visualTheme").value =
+      "🇮🇩 Merah Putih Nasional";
+
+    document.getElementById("colorPalette").value =
+      "🔴 Merah Putih";
+
+    document.getElementById("illustrationStyle").value =
+      "📚 Edukasi Profesional";
+
+  }
+
+
+  updateClassInfo();
+
+  updateMapelVisibility();
+
+  showToast("⚡ Quick Start berhasil dimuat.");
+
+}
+
+
+/* =====================================================
+STEPS
+===================================================== */
+
+function updateStepState(){
+
+  document
+    .querySelectorAll(".step")
+    .forEach(x => x.classList.remove("active"));
+
+
+  document
+    .getElementById("step1")
+    .classList.add("active");
+
+
+  setTimeout(() => {
+
+    document
+      .getElementById("step2")
+      .classList.add("active");
+
+  },100);
+
+}
+
+
+function updateStepGenerate(){
+
+  document
+    .getElementById("step1")
+    .classList.add("active");
+
+  document
+    .getElementById("step2")
+    .classList.add("active");
+
+  document
+    .getElementById("step3")
+    .classList.add("active");
+
+  document
+    .getElementById("step4")
+    .classList.add("active");
+
+}
+
+
+/* =====================================================
+TOAST
+===================================================== */
+
+let toastTimer;
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add("show");
+
+
+  clearTimeout(toastTimer);
+
+
+  toastTimer =
+    setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* =====================================================
+KEYBOARD SHORTCUT
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      (event.ctrlKey || event.metaKey) &&
+      event.key === "Enter"
+    ){
+
+      event.preventDefault();
+
+      generatePrompt();
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+INIT
+===================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    renderDynamicOptions();
+
+    updateClassInfo();
+
+    updateMapelVisibility();
+
+  }
+);
+
+</script>
+
+</body>
+</html>
