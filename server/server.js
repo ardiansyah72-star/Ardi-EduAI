@@ -1380,21 +1380,12 @@ app.use((req, res) => {
    SERVER START
    ========================================================= */
 
-app.listen(PORT, HOST, () => {
-  console.log("");
-  console.log("╔════════════════════════════════════════════════╗");
-  console.log("║          🚀 ARDI EDUAI V6.4                   ║");
-  console.log("╠════════════════════════════════════════════════╣");
-  console.log("║ 🤖 AI Learning Content Generator               ║");
-  console.log("║ 📚 Adaptive Class Engine 1–6                   ║");
-  console.log("║ 📋 RPM Pembelajaran Mendalam                   ║");
-  console.log("║ 📊 Blanko Nilai & Asesmen                     ║");
-  console.log("║ 📝 Asesmen Tengah Periode                     ║");
-  console.log("║ 📝 Asesmen Akhir Periode                      ║");
-  console.log("║ 🎨 Visual Design Engine                       ║");
-  console.log("║ 🧠 Deep Learning                              ║");
-  console.log("║                                               ║");
-  console.log(`║ 🌐 http://localhost:${PORT}                    ║`);
-  console.log("╚════════════════════════════════════════════════╝");
-  console.log("");
-});
+if (require.main === module) {
+  app.listen(PORT, HOST, () => {
+    console.log("");
+    console.log("🚀 ARDI EDUAI V6.4");
+    console.log(`🌐 http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
