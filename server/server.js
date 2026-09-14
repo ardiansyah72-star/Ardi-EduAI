@@ -6,7 +6,8 @@ const path = require("path");
 const OpenAI = require("openai");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const HOST = "0.0.0.0";
 
 app.use(cors());
 app.use(express.json({ limit: "2mb" }));
@@ -1379,7 +1380,7 @@ app.use((req, res) => {
    SERVER START
    ========================================================= */
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
   console.log("");
   console.log("╔════════════════════════════════════════════════╗");
   console.log("║          🚀 ARDI EDUAI V6.4                   ║");
