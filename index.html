@@ -1,0 +1,3522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ardi EduAI V6.5</title>
+
+<style>
+:root{
+  --primary:#4f46e5;
+  --primary-dark:#3730a3;
+  --secondary:#7c3aed;
+  --accent:#06b6d4;
+  --success:#16a34a;
+  --danger:#dc2626;
+  --warning:#f59e0b;
+
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#64748b;
+  --border:#e2e8f0;
+
+  --shadow:0 8px 30px rgba(15,23,42,.07);
+  --radius:18px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background:
+    linear-gradient(180deg,#f8faff 0%,#f5f7fb 45%,#eef2ff 100%);
+  color:var(--text);
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(226,232,240,.9);
+}
+
+.header-inner{
+  max-width:1250px;
+  margin:auto;
+  padding:12px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-icon{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  color:white;
+  font-size:22px;
+  box-shadow:0 6px 18px rgba(79,70,229,.25);
+}
+
+.brand-title{
+  font-size:17px;
+  font-weight:850;
+  letter-spacing:-.3px;
+}
+
+.brand-sub{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:1px;
+}
+
+.header-actions{
+  display:flex;
+  gap:8px;
+}
+
+.small-btn{
+  border:1px solid var(--border);
+  background:white;
+  color:#334155;
+  border-radius:10px;
+  padding:8px 12px;
+  font-size:12px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.small-btn:hover{
+  border-color:#c7d2fe;
+  background:#eef2ff;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero{
+  max-width:1250px;
+  margin:auto;
+  padding:38px 22px 20px;
+  text-align:center;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:#eef2ff;
+  color:#4338ca;
+  border:1px solid #e0e7ff;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+
+.hero h1{
+  margin:15px 0 8px;
+  font-size:clamp(29px,4vw,46px);
+  line-height:1.05;
+  letter-spacing:-1.8px;
+  font-weight:900;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,#4f46e5,#7c3aed,#0891b2);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  max-width:720px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+
+/* =========================================================
+   MOVING INFO BAR
+   ========================================================= */
+
+.info-marquee{
+  width:100%;
+  overflow:hidden;
+  margin:10px 0 20px;
+  border-top:1px solid #e5e7eb;
+  border-bottom:1px solid #e5e7eb;
+  background:rgba(255,255,255,.65);
+}
+
+.marquee-track{
+  display:flex;
+  width:max-content;
+  animation:marquee 28s linear infinite;
+}
+
+.marquee-content{
+  display:flex;
+  align-items:center;
+  gap:35px;
+  white-space:nowrap;
+  padding:9px 18px;
+  font-size:11px;
+  color:#64748b;
+  font-weight:700;
+}
+
+.marquee-content strong{
+  color:#4f46e5;
+}
+
+@keyframes marquee{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(-50%);
+  }
+}
+
+/* =========================================================
+   QUICK START
+   ========================================================= */
+
+.quick-wrap{
+  max-width:1250px;
+  margin:0 auto 18px;
+  padding:0 22px;
+}
+
+.quick-toggle{
+  border:1px solid #dbe4ff;
+  background:white;
+  color:#4338ca;
+  border-radius:12px;
+  padding:9px 14px;
+  font-size:12px;
+  font-weight:800;
+  box-shadow:0 3px 12px rgba(79,70,229,.05);
+}
+
+.quick-toggle:hover{
+  background:#eef2ff;
+}
+
+.quick-panel{
+  display:none;
+  margin-top:10px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:12px;
+  box-shadow:var(--shadow);
+}
+
+.quick-panel.show{
+  display:block;
+}
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.quick-item{
+  border:1px solid var(--border);
+  background:#f8fafc;
+  border-radius:11px;
+  padding:10px;
+  text-align:left;
+  font-size:12px;
+  font-weight:750;
+  color:#334155;
+}
+
+.quick-item:hover{
+  background:#eef2ff;
+  border-color:#c7d2fe;
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main{
+  max-width:1250px;
+  margin:auto;
+  padding:0 22px 60px;
+}
+
+/* =========================================================
+   GENERATOR PICKER
+   ========================================================= */
+
+.generator-section{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+
+.section-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:14px;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:17px;
+  font-weight:850;
+}
+
+.section-desc{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
+
+.generator-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+
+.generator-card{
+  border:1px solid var(--border);
+  background:#f8fafc;
+  border-radius:12px;
+  padding:11px 8px;
+  min-height:74px;
+  text-align:center;
+  transition:.2s ease;
+  color:#334155;
+}
+
+.generator-card:hover{
+  transform:translateY(-2px);
+  border-color:#c7d2fe;
+  background:#eef2ff;
+}
+
+.generator-card.active{
+  color:#3730a3;
+  border-color:#818cf8;
+  background:linear-gradient(135deg,#eef2ff,#f5f3ff);
+  box-shadow:0 4px 14px rgba(79,70,229,.12);
+}
+
+.generator-icon{
+  font-size:21px;
+  line-height:1;
+  margin-bottom:6px;
+}
+
+.generator-name{
+  font-size:11px;
+  font-weight:800;
+  line-height:1.25;
+}
+
+.generator-mini-desc{
+  display:none;
+}
+
+/* =========================================================
+   WORKSPACE
+   ========================================================= */
+
+.workspace{
+  margin-top:18px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.workspace-header{
+  padding:18px 20px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(135deg,#fafbff,#f8f7ff);
+}
+
+.workspace-title{
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:-.5px;
+}
+
+.workspace-subtitle{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* =========================================================
+   STEPS
+   ========================================================= */
+
+.steps{
+  display:flex;
+  gap:6px;
+  padding:10px 20px;
+  border-bottom:1px solid var(--border);
+  overflow-x:auto;
+}
+
+.step{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 9px;
+  border-radius:8px;
+  background:#f1f5f9;
+  color:#64748b;
+  font-size:10px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.step.active{
+  background:#eef2ff;
+  color:#4338ca;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.form-area{
+  padding:20px;
+}
+
+.form-section{
+  margin-bottom:20px;
+}
+
+.form-section-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
+  font-size:14px;
+  font-weight:850;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.form-grid.three{
+  grid-template-columns:repeat(3,1fr);
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+label{
+  font-size:11px;
+  font-weight:800;
+  color:#475569;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  border:1px solid var(--border);
+  background:#fff;
+  border-radius:10px;
+  padding:10px 11px;
+  outline:none;
+  color:#1e293b;
+  font-size:12px;
+  transition:.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:#818cf8;
+  box-shadow:0 0 0 3px rgba(99,102,241,.08);
+}
+
+textarea{
+  min-height:95px;
+  resize:vertical;
+  line-height:1.55;
+}
+
+.help{
+  font-size:10px;
+  color:#94a3b8;
+}
+
+/* =========================================================
+   CHARACTER
+   ========================================================= */
+
+.character-box{
+  border:1px solid var(--border);
+  background:#fafbff;
+  border-radius:14px;
+  padding:12px;
+}
+
+.character-options{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin-bottom:10px;
+}
+
+.character-option{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:8px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:9px;
+  cursor:pointer;
+}
+
+.character-option:hover{
+  border-color:#c7d2fe;
+}
+
+.character-option input{
+  width:auto;
+  margin:0;
+}
+
+.character-option span{
+  font-size:10px;
+  font-weight:700;
+  color:#475569;
+}
+
+/* =========================================================
+   VISUAL ENGINE
+   ========================================================= */
+
+.visual-box{
+  border:1px solid #ddd6fe;
+  background:linear-gradient(135deg,#faf5ff,#f5f3ff);
+  border-radius:14px;
+  padding:14px;
+}
+
+.visual-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.visual-elements{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+}
+
+.visual-check{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  padding:7px;
+  background:white;
+  border:1px solid #e9d5ff;
+  border-radius:8px;
+}
+
+.visual-check input{
+  width:auto;
+}
+
+.visual-check span{
+  font-size:10px;
+}
+
+/* =========================================================
+   ADAPTIVE INFO
+   ========================================================= */
+
+.adaptive-info{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  margin-top:10px;
+  background:#eff6ff;
+  border:1px solid #dbeafe;
+  border-radius:10px;
+  color:#1e40af;
+  font-size:11px;
+  font-weight:700;
+}
+
+.adaptive-badge{
+  background:#2563eb;
+  color:white;
+  padding:4px 7px;
+  border-radius:7px;
+  font-size:10px;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:20px;
+  padding-top:15px;
+  border-top:1px solid var(--border);
+}
+
+.btn{
+  border:none;
+  border-radius:11px;
+  padding:11px 17px;
+  font-size:12px;
+  font-weight:850;
+  transition:.2s;
+}
+
+.btn-secondary{
+  background:#f1f5f9;
+  color:#475569;
+}
+
+.btn-secondary:hover{
+  background:#e2e8f0;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  color:white;
+  box-shadow:0 6px 18px rgba(79,70,229,.2);
+}
+
+.btn-primary:hover{
+  transform:translateY(-1px);
+  box-shadow:0 9px 22px rgba(79,70,229,.27);
+}
+
+.btn-primary:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+/* =========================================================
+   RESULT
+   ========================================================= */
+
+.result-section{
+  margin-top:18px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  display:none;
+}
+
+.result-section.show{
+  display:block;
+}
+
+.result-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:15px 18px;
+  border-bottom:1px solid var(--border);
+  background:#fafbff;
+}
+
+.result-title{
+  font-weight:900;
+  font-size:15px;
+}
+
+.result-actions{
+  display:flex;
+  gap:6px;
+}
+
+.result-content{
+  padding:20px;
+  white-space:pre-wrap;
+  line-height:1.7;
+  font-size:12px;
+  color:#334155;
+  overflow:auto;
+  max-height:700px;
+}
+
+.result-content h1,
+.result-content h2,
+.result-content h3{
+  color:#1e293b;
+}
+
+/* =========================================================
+   HISTORY
+   ========================================================= */
+
+.history{
+  margin-top:18px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+
+.history-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.history-list{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.history-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  background:#f8fafc;
+  border:1px solid var(--border);
+  border-radius:10px;
+}
+
+.history-name{
+  font-size:11px;
+  font-weight:800;
+}
+
+.history-date{
+  font-size:9px;
+  color:#94a3b8;
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.loading{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:14px;
+  color:#4338ca;
+  font-size:12px;
+  font-weight:800;
+}
+
+.loading.show{
+  display:flex;
+}
+
+.spinner{
+  width:17px;
+  height:17px;
+  border:2px solid #c7d2fe;
+  border-top-color:#4f46e5;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:2000;
+  max-width:340px;
+  padding:11px 15px;
+  border-radius:11px;
+  background:#1e293b;
+  color:white;
+  font-size:11px;
+  font-weight:700;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+  transform:translateY(100px);
+  opacity:0;
+  transition:.25s;
+}
+
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+.toast.success{
+  background:#166534;
+}
+
+.toast.error{
+  background:#991b1b;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer{
+  text-align:center;
+  padding:25px 20px 35px;
+  color:#94a3b8;
+  font-size:10px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:900px){
+
+  .generator-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .character-options{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .visual-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .visual-elements{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .form-grid.three{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:650px){
+
+  .header-inner{
+    padding:10px 14px;
+  }
+
+  .header-actions{
+    display:none;
+  }
+
+  .hero{
+    padding:28px 15px 14px;
+  }
+
+  .main,
+  .quick-wrap{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .generator-section,
+  .workspace,
+  .result-section,
+  .history{
+    border-radius:15px;
+  }
+
+  .generator-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .form-grid,
+  .form-grid.three,
+  .visual-grid{
+    grid-template-columns:1fr;
+  }
+
+  .quick-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .character-options{
+    grid-template-columns:1fr;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .result-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+  <div class="header-inner">
+
+    <div class="brand">
+      <div class="brand-icon">🤖</div>
+
+      <div>
+        <div class="brand-title">Ardi EduAI</div>
+        <div class="brand-sub">AI Learning Content Generator V6.5</div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="small-btn" onclick="scrollToGenerator()">
+        🧩 Generator
+      </button>
+
+      <button class="small-btn" onclick="scrollToResult()">
+        📄 Hasil
+      </button>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+  <div class="hero-badge">
+    ✨ AI LEARNING CONTENT GENERATOR
+  </div>
+
+  <h1>
+    Buat Pembelajaran
+    <span>Lebih Cepat</span>
+  </h1>
+
+  <p>
+    Ardi EduAI membantu guru SD membuat media, materi, LKPD,
+    game, presentasi, RPM, asesmen, dan berbagai konten
+    pembelajaran dengan bantuan AI.
+  </p>
+
+</section>
+
+
+<!-- =====================================================
+     MOVING INFO
+===================================================== -->
+
+<div class="info-marquee">
+
+  <div class="marquee-track">
+
+    <div class="marquee-content">
+      <span>✦ <strong>10 Generator Pembelajaran</strong></span>
+      <span>• Kelas 1–6</span>
+      <span>• Fase A–C Otomatis</span>
+      <span>• Ide Pembelajaran Tanpa Batas ∞</span>
+      <span>• Pembelajaran Mendalam</span>
+      <span>• Desain Visual Adaptif</span>
+    </div>
+
+    <div class="marquee-content">
+      <span>✦ <strong>10 Generator Pembelajaran</strong></span>
+      <span>• Kelas 1–6</span>
+      <span>• Fase A–C Otomatis</span>
+      <span>• Ide Pembelajaran Tanpa Batas ∞</span>
+      <span>• Pembelajaran Mendalam</span>
+      <span>• Desain Visual Adaptif</span>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     QUICK START
+===================================================== -->
+
+<div class="quick-wrap">
+
+  <button
+    class="quick-toggle"
+    onclick="toggleQuickStart()"
+  >
+    ⚡ Quick Start
+  </button>
+
+  <div class="quick-panel" id="quickPanel">
+
+    <div class="quick-grid">
+
+      <button
+        class="quick-item"
+        onclick="quickStart('Pendidikan Agama Islam dan Budi Pekerti','Makanan halal dan haram')"
+      >
+        🕌 PAI
+      </button>
+
+      <button
+        class="quick-item"
+        onclick="quickStart('IPAS','Hewan di sekitar kita')"
+      >
+        🌱 IPAS
+      </button>
+
+      <button
+        class="quick-item"
+        onclick="quickStart('Matematika','Bilangan dan operasi hitung')"
+      >
+        🔢 Matematika
+      </button>
+
+      <button
+        class="quick-item"
+        onclick="quickStart('Pendidikan Pancasila','Gotong royong')"
+      >
+        🇮🇩 Pancasila
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+  <!-- ===================================================
+       GENERATOR PICKER
+  ==================================================== -->
+
+  <section
+    class="generator-section"
+    id="generatorSection"
+  >
+
+    <div class="section-heading">
+
+      <div>
+        <div class="section-title">
+          🧩 Pilih Generator
+        </div>
+
+        <div class="section-desc">
+          Pilih jenis konten yang ingin dibuat.
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="generator-grid" id="generatorGrid">
+
+      <button
+        class="generator-card active"
+        data-type="media"
+        onclick="selectContentType('media')"
+      >
+        <div class="generator-icon">🎨</div>
+        <div class="generator-name">Media Interaktif</div>
+      </button>
+
+      <button
+        class="generator-card"
+        data-type="materi"
+        onclick="selectContentType('materi')"
+      >
+        <div class="generator-icon">📚</div>
+        <div class="generator-name">Materi Pembelajaran</div>
+      </button>
+
+      <button
+        class="generator-card"
+        data-type="presentation"
+        onclick="selectContentType('presentation')"
+      >
+        <div class="generator-icon">📊</div>
+        <div class="generator-name">Presentasi / Slide</div>
+      </button>
+
+      <button
+        class="generator-card"
+        data-type="lkpd"
+        onclick="selectContentType('lkpd')"
+      >
+        <div class="generator-icon">📋</div>
+        <div class="generator-name">LKPD</div>
+      </button>
+
+      <button
+        class="generator-card"
+        data-type="game"
+        onclick="selectContentType('game')"
+      >
+        <div class="generator-icon">🎮</div>
+        <div class="generator-name">Game / Kuis</div>
+      </button>
+
+      <button
+        class="generator-card"
+        data-type="html"
+        onclick="selectContentType('html')"
+      >
+        <div class="generator-icon">💻</div>
+        <div class="generator-name">HTML Interaktif</div>
+      </button>
+
+      <button
+        class="generator-card"
+        data-type="rpm"
+        onclick="selectContentType('rpm')"
+      >
+        <div class="generator-icon">📋</div>
+        <div class="generator-name">RPM Pembelajaran Mendalam</div>
+      </button>
+
+      <button
+        class="generator-card"
+        data-type="blankoNilai"
+        onclick="selectContentType('blankoNilai')"
+      >
+        <div class="generator-icon">📊</div>
+        <div class="generator-name">Blanko Nilai</div>
+      </button>
+
+      <button
+        class="generator-card"
+        data-type="asesmenTengah"
+        onclick="selectContentType('asesmenTengah')"
+      >
+        <div class="generator-icon">📝</div>
+        <div class="generator-name">Asesmen Tengah Periode</div>
+      </button>
+
+      <button
+        class="generator-card"
+        data-type="asesmenAkhir"
+        onclick="selectContentType('asesmenAkhir')"
+      >
+        <div class="generator-icon">📝</div>
+        <div class="generator-name">Asesmen Akhir Periode</div>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===================================================
+       WORKSPACE
+  ==================================================== -->
+
+  <section
+    class="workspace"
+    id="workspace"
+  >
+
+    <div class="workspace-header">
+
+      <div
+        class="workspace-title"
+        id="workspaceTitle"
+      >
+        🎨 Media Pembelajaran Interaktif
+      </div>
+
+      <div
+        class="workspace-subtitle"
+        id="workspaceSubtitle"
+      >
+        Buat media pembelajaran interaktif sesuai kelas dan kebutuhan siswa.
+      </div>
+
+    </div>
+
+
+    <div class="steps">
+
+      <div class="step active">
+        1️⃣ Data
+      </div>
+
+      <div class="step">
+        2️⃣ Karakter
+      </div>
+
+      <div class="step">
+        3️⃣ Desain
+      </div>
+
+      <div class="step">
+        4️⃣ Generate
+      </div>
+
+    </div>
+
+
+    <div class="form-area">
+
+      <!-- ===============================================
+           BASIC DATA
+      ================================================ -->
+
+      <div class="form-section">
+
+        <div class="form-section-title">
+          📚 Data Pembelajaran
+        </div>
+
+        <div class="form-grid">
+
+          <div class="field">
+
+            <label>Mata Pelajaran</label>
+
+            <input
+              type="text"
+              id="mapel"
+              placeholder="Contoh: Pendidikan Agama Islam"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Kelas</label>
+
+            <select id="kelas" onchange="updateAdaptiveInfo()">
+
+              <option value="1">Kelas 1</option>
+              <option value="2">Kelas 2</option>
+              <option value="3" selected>Kelas 3</option>
+              <option value="4">Kelas 4</option>
+              <option value="5">Kelas 5</option>
+              <option value="6">Kelas 6</option>
+
+            </select>
+
+          </div>
+
+
+          <div
+            class="field"
+            id="materiBasicField"
+          >
+
+            <label>Materi Pembelajaran</label>
+
+            <input
+              type="text"
+              id="materi"
+              placeholder="Contoh: Makanan halal dan haram"
+            >
+
+          </div>
+
+
+          <div
+            class="field"
+            id="tujuanBasicField"
+          >
+
+            <label>Tujuan Pembelajaran</label>
+
+            <textarea
+              id="tujuan"
+              placeholder="Tuliskan tujuan pembelajaran yang ingin dicapai."
+            ></textarea>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="adaptive-info"
+          id="adaptiveInfo"
+        >
+
+          <span class="adaptive-badge">FASE B</span>
+
+          <span>
+            Kelas 3 otomatis menggunakan karakteristik pembelajaran
+            Fase B.
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===============================================
+           ASSESSMENT DATA
+      ================================================ -->
+
+      <div
+        class="form-section"
+        id="assessmentSection"
+        style="display:none;"
+      >
+
+        <div class="form-section-title">
+          📝 Data Asesmen
+        </div>
+
+
+        <div class="form-grid">
+
+          <div class="field">
+
+            <label>Satuan Pendidikan</label>
+
+            <input
+              type="text"
+              id="satuanPendidikan"
+              placeholder="Contoh: SD Negeri 050766 Padang Langkat"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Nama Guru</label>
+
+            <input
+              type="text"
+              id="namaGuru"
+              placeholder="Nama guru"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Semester</label>
+
+            <select id="semester">
+
+              <option value="Semester I (Ganjil)">
+                Semester I (Ganjil)
+              </option>
+
+              <option value="Semester II (Genap)">
+                Semester II (Genap)
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Tahun Pelajaran</label>
+
+            <input
+              type="text"
+              id="tahunPelajaran"
+              placeholder="2026/2027"
+              value="2026/2027"
+            >
+
+          </div>
+
+
+          <div class="field full">
+
+            <label id="materiAsesmenLabel">
+              Materi yang Sudah Diajarkan
+            </label>
+
+            <textarea
+              id="materiSudahDiajarkan"
+              placeholder="Tuliskan hanya materi yang benar-benar sudah diajarkan kepada siswa."
+            ></textarea>
+
+            <div class="help">
+              AI hanya akan membuat soal berdasarkan materi yang dituliskan di sini.
+            </div>
+
+          </div>
+
+
+          <div class="field full">
+
+            <label>
+              Tujuan Pembelajaran yang Sudah Dicapai
+            </label>
+
+            <textarea
+              id="tpAsesmen"
+              placeholder="Tuliskan tujuan pembelajaran yang sudah dicapai siswa."
+            ></textarea>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Jumlah Soal</label>
+
+            <input
+              type="number"
+              id="jumlahSoalAsesmen"
+              min="1"
+              max="100"
+              value="20"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Bentuk Soal</label>
+
+            <select id="bentukSoalAsesmen">
+
+              <option value="Pilihan Ganda">
+                Pilihan Ganda
+              </option>
+
+              <option value="Pilihan Ganda + Uraian">
+                Pilihan Ganda + Uraian
+              </option>
+
+              <option value="Campuran">
+                Campuran
+              </option>
+
+              <option value="Pilihan Ganda Kompleks">
+                Pilihan Ganda Kompleks
+              </option>
+
+              <option value="Benar/Salah">
+                Benar/Salah
+              </option>
+
+              <option value="Menjodohkan">
+                Menjodohkan
+              </option>
+
+              <option value="Isian Singkat">
+                Isian Singkat
+              </option>
+
+              <option value="Uraian">
+                Uraian
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Dominasi Kemampuan Berpikir</label>
+
+            <select id="levelKognitif">
+
+              <option value="Seimbang">
+                Seimbang
+              </option>
+
+              <option value="Pemahaman">
+                Pemahaman
+              </option>
+
+              <option value="Pemahaman + Penerapan">
+                Pemahaman + Penerapan
+              </option>
+
+              <option value="Penerapan + Penalaran">
+                Penerapan + Penalaran
+              </option>
+
+              <option value="HOTS/Penalaran">
+                HOTS / Penalaran
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Komposisi Kesulitan</label>
+
+            <select id="komposisiKesulitan">
+
+              <option value="Seimbang">
+                Seimbang
+              </option>
+
+              <option value="Dominan Mudah">
+                Dominan Mudah
+              </option>
+
+              <option value="Dominan Sedang">
+                Dominan Sedang
+              </option>
+
+              <option value="Menantang">
+                Menantang
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Sistem Penskoran</label>
+
+            <select id="sistemPenskoran">
+
+              <option value="Skor proporsional sesuai bentuk soal">
+                Skor proporsional
+              </option>
+
+              <option value="Nilai akhir skala 100">
+                Nilai akhir skala 100
+              </option>
+
+              <option value="Setiap soal memiliki bobot yang sama">
+                Bobot sama
+              </option>
+
+              <option value="AI menentukan sistem penskoran yang sesuai">
+                AI menentukan
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="field full">
+
+            <label>Komponen Output</label>
+
+            <input
+              type="text"
+              id="komponenOutputAsesmen"
+              value="Kisi-kisi, Naskah Soal, Kunci Jawaban, Pedoman Penskoran, Rubrik Uraian, Pemetaan Soal ke TP, Kontrol Cakupan Materi"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===============================================
+           CHARACTER
+      ================================================ -->
+
+      <div class="form-section">
+
+        <div class="form-section-title">
+          🧑‍🎓 Karakter & Kondisi Peserta Didik
+        </div>
+
+
+        <div class="character-box">
+
+          <div class="character-options">
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Aktif dan antusias"
+                class="character-check"
+              >
+              <span>Aktif & antusias</span>
+            </label>
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Suka bertanya"
+                class="character-check"
+              >
+              <span>Suka bertanya</span>
+            </label>
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Suka bekerja kelompok"
+                class="character-check"
+              >
+              <span>Kerja kelompok</span>
+            </label>
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Kreatif"
+                class="character-check"
+              >
+              <span>Kreatif</span>
+            </label>
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Membutuhkan instruksi sederhana"
+                class="character-check"
+              >
+              <span>Instruksi sederhana</span>
+            </label>
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Kemampuan membaca beragam"
+                class="character-check"
+              >
+              <span>Kemampuan membaca beragam</span>
+            </label>
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Suka aktivitas bermain"
+                class="character-check"
+              >
+              <span>Suka bermain</span>
+            </label>
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Mudah memahami melalui visual"
+                class="character-check"
+              >
+              <span>Visual</span>
+            </label>
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Suka praktik langsung"
+                class="character-check"
+              >
+              <span>Praktik langsung</span>
+            </label>
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Mudah memahami melalui diskusi"
+                class="character-check"
+              >
+              <span>Diskusi</span>
+            </label>
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Membutuhkan contoh konkret"
+                class="character-check"
+              >
+              <span>Contoh konkret</span>
+            </label>
+
+            <label class="character-option">
+              <input
+                type="checkbox"
+                value="Membutuhkan pendampingan"
+                class="character-check"
+              >
+              <span>Perlu pendampingan</span>
+            </label>
+
+          </div>
+
+
+          <label>
+            Deskripsi tambahan kondisi siswa
+          </label>
+
+          <textarea
+            id="characterDescription"
+            placeholder="Contoh: Sebagian besar siswa aktif dan senang bermain. Beberapa siswa masih kesulitan membaca kalimat panjang. Siswa lebih mudah memahami materi melalui gambar, contoh konkret, dan praktik langsung."
+          ></textarea>
+
+          <div class="help">
+            Bagian ini opsional. Semakin spesifik informasi yang diberikan,
+            semakin sesuai hasil yang dapat dibuat AI.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===============================================
+           PLATFORM & DIFFICULTY
+      ================================================ -->
+
+      <div class="form-section">
+
+        <div class="form-section-title">
+          ⚙️ Platform & Tingkat Pembelajaran
+        </div>
+
+        <div class="form-grid three">
+
+          <div class="field">
+
+            <label>Platform</label>
+
+            <select id="platform">
+
+              <option value="Canva AI">
+                Canva AI
+              </option>
+
+              <option value="Microsoft Word">
+                Microsoft Word
+              </option>
+
+              <option value="Microsoft PowerPoint">
+                Microsoft PowerPoint
+              </option>
+
+              <option value="HTML Web">
+                HTML Web
+              </option>
+
+              <option value="Umum">
+                Umum
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Tingkat Kesulitan</label>
+
+            <select id="kesulitan">
+
+              <option value="Sesuai kelas">
+                Sesuai kelas
+              </option>
+
+              <option value="Mudah">
+                Mudah
+              </option>
+
+              <option value="Sedang">
+                Sedang
+              </option>
+
+              <option value="Menantang">
+                Menantang
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="field">
+
+            <label>Mode Pembelajaran</label>
+
+            <select id="learningMode">
+
+              <option value="Berkesadaran, Bermakna, Menggembirakan">
+                Pembelajaran Mendalam
+              </option>
+
+              <option value="Aktif dan kontekstual">
+                Aktif & Kontekstual
+              </option>
+
+              <option value="Eksploratif">
+                Eksploratif
+              </option>
+
+              <option value="Kolaboratif">
+                Kolaboratif
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===============================================
+           VISUAL DESIGN
+      ================================================ -->
+
+      <div class="form-section">
+
+        <div class="form-section-title">
+          🎨 Visual Design Engine
+        </div>
+
+
+        <div class="visual-box">
+
+          <div class="visual-grid">
+
+            <div class="field">
+
+              <label>Tema Visual</label>
+
+              <select id="visualTheme">
+
+                <option value="AI memilih otomatis berdasarkan materi">
+                  AI memilih otomatis
+                </option>
+
+                <option value="Ceria & Colorful">
+                  Ceria & Colorful
+                </option>
+
+                <option value="Dunia Anak">
+                  Dunia Anak
+                </option>
+
+                <option value="Alam & Edukatif">
+                  Alam & Edukatif
+                </option>
+
+                <option value="Petualangan">
+                  Petualangan
+                </option>
+
+                <option value="Islami Elegan">
+                  Islami Elegan
+                </option>
+
+                <option value="Merah Putih Nasional">
+                  Merah Putih Nasional
+                </option>
+
+                <option value="Sains & Eksplorasi">
+                  Sains & Eksplorasi
+                </option>
+
+                <option value="Kreatif & Artistik">
+                  Kreatif & Artistik
+                </option>
+
+                <option value="Modern Premium">
+                  Modern Premium
+                </option>
+
+                <option value="Minimalis Modern">
+                  Minimalis Modern
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="field">
+
+              <label>Palet Warna</label>
+
+              <select id="colorPalette">
+
+                <option value="AI memilih otomatis">
+                  AI memilih otomatis
+                </option>
+
+                <option value="Rainbow">
+                  Rainbow
+                </option>
+
+                <option value="Biru Cerah">
+                  Biru Cerah
+                </option>
+
+                <option value="Hijau Alam">
+                  Hijau Alam
+                </option>
+
+                <option value="Oranye Ceria">
+                  Oranye Ceria
+                </option>
+
+                <option value="Ungu Kreatif">
+                  Ungu Kreatif
+                </option>
+
+                <option value="Merah Putih">
+                  Merah Putih
+                </option>
+
+                <option value="Pastel">
+                  Pastel
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="field">
+
+              <label>Gaya Ilustrasi</label>
+
+              <select id="illustrationStyle">
+
+                <option value="Sesuaikan Materi">
+                  Sesuaikan Materi
+                </option>
+
+                <option value="Kartun Anak">
+                  Kartun Anak
+                </option>
+
+                <option value="Ilustrasi Buku Cerita">
+                  Ilustrasi Buku Cerita
+                </option>
+
+                <option value="Flat Illustration">
+                  Flat Illustration
+                </option>
+
+                <option value="Karakter 3D">
+                  Karakter 3D
+                </option>
+
+                <option value="Cute Cartoon">
+                  Cute Cartoon
+                </option>
+
+                <option value="Hand-drawn">
+                  Hand-drawn
+                </option>
+
+                <option value="Edukasi Profesional">
+                  Edukasi Profesional
+                </option>
+
+                <option value="Futuristic">
+                  Futuristic
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="field">
+
+              <label>Kepadatan Visual</label>
+
+              <select id="visualDensity">
+
+                <option value="Sedang">
+                  Sedang
+                </option>
+
+                <option value="Minimalis">
+                  Minimalis
+                </option>
+
+                <option value="Kaya Visual">
+                  Kaya Visual
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="field">
+
+              <label>Mode Visual</label>
+
+              <select id="visualMode">
+
+                <option value="Digital Berwarna">
+                  Digital Berwarna
+                </option>
+
+                <option value="Cetak Berwarna">
+                  Cetak Berwarna
+                </option>
+
+                <option value="Ramah Cetak">
+                  Ramah Cetak
+                </option>
+
+                <option value="AI memilih otomatis">
+                  AI memilih otomatis
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="field"
+            style="margin-top:12px;"
+          >
+
+            <label>Elemen Visual</label>
+
+            <div class="visual-elements">
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Ilustrasi utama"
+                  checked
+                >
+                <span>Ilustrasi utama</span>
+              </label>
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Karakter anak"
+                  checked
+                >
+                <span>Karakter anak</span>
+              </label>
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Gambar objek sesuai materi"
+                  checked
+                >
+                <span>Objek materi</span>
+              </label>
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Speech bubble"
+                >
+                <span>Speech bubble</span>
+              </label>
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Ikon/badge"
+                >
+                <span>Ikon / badge</span>
+              </label>
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Kotak tantangan"
+                >
+                <span>Kotak tantangan</span>
+              </label>
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Reward/bintang"
+                >
+                <span>Reward / bintang</span>
+              </label>
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Ornamen dekoratif"
+                >
+                <span>Ornamen</span>
+              </label>
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Infografis"
+                >
+                <span>Infografis</span>
+              </label>
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Gambar aktivitas mengamati"
+                >
+                <span>Mengamati</span>
+              </label>
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Gambar mencocokkan"
+                >
+                <span>Mencocokkan</span>
+              </label>
+
+              <label class="visual-check">
+                <input
+                  type="checkbox"
+                  class="visual-element"
+                  value="Ekspresi karakter"
+                >
+                <span>Ekspresi karakter</span>
+              </label>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===============================================
+           LOADING
+      ================================================ -->
+
+      <div
+        class="loading"
+        id="loading"
+      >
+
+        <div class="spinner"></div>
+
+        <span>
+          Ardi EduAI sedang membuat konten...
+        </span>
+
+      </div>
+
+
+      <!-- ===============================================
+           ACTION
+      ================================================ -->
+
+      <div class="actions">
+
+        <button
+          class="btn btn-secondary"
+          onclick="resetForm()"
+        >
+          ↺ Reset
+        </button>
+
+        <button
+          class="btn btn-primary"
+          id="generateBtn"
+          onclick="generateContent()"
+        >
+          🚀 Generate
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ===================================================
+       RESULT
+  ==================================================== -->
+
+  <section
+    class="result-section"
+    id="resultSection"
+  >
+
+    <div class="result-header">
+
+      <div>
+
+        <div class="result-title">
+          📄 Hasil Generasi AI
+        </div>
+
+        <div
+          class="section-desc"
+          id="resultSubtitle"
+        >
+          Hasil akan muncul di sini.
+        </div>
+
+      </div>
+
+
+      <div class="result-actions">
+
+        <button
+          class="small-btn"
+          onclick="copyResult()"
+        >
+          📋 Copy
+        </button>
+
+        <button
+          class="small-btn"
+          onclick="downloadResult()"
+        >
+          💾 TXT
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="result-content"
+      id="resultContent"
+    ></div>
+
+  </section>
+
+
+  <!-- ===================================================
+       HISTORY
+  ==================================================== -->
+
+  <section class="history">
+
+    <div class="history-header">
+
+      <div>
+
+        <div class="section-title">
+          🕘 Riwayat
+        </div>
+
+        <div class="section-desc">
+          Riwayat hasil yang pernah dibuat di browser ini.
+        </div>
+
+      </div>
+
+      <button
+        class="small-btn"
+        onclick="clearHistory()"
+      >
+        Hapus
+      </button>
+
+    </div>
+
+
+    <div
+      class="history-list"
+      id="historyList"
+    ></div>
+
+  </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+  Ardi EduAI V6.5 • AI Learning Content Generator
+  <br>
+  Dibuat untuk membantu guru menciptakan pembelajaran yang
+  bermakna, menarik, dan sesuai kebutuhan peserta didik.
+
+</footer>
+
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+   ========================================================= */
+
+const API_URL = "/generate";
+
+let currentContentType = "media";
+
+let currentResult = "";
+
+let historyData = JSON.parse(
+  localStorage.getItem("ardiEduAIHistory") || "[]"
+);
+
+
+/* =========================================================
+   GENERATOR DATA
+   ========================================================= */
+
+const generatorNames = {
+
+  media:
+    "🎨 Media Interaktif",
+
+  materi:
+    "📚 Materi Pembelajaran",
+
+  presentation:
+    "📊 Presentasi / Slide",
+
+  lkpd:
+    "📋 LKPD",
+
+  game:
+    "🎮 Game / Kuis",
+
+  html:
+    "💻 HTML Interaktif",
+
+  rpm:
+    "📋 RPM Pembelajaran Mendalam",
+
+  blankoNilai:
+    "📊 Blanko Nilai & Asesmen",
+
+  asesmenTengah:
+    "📝 Asesmen Tengah Periode",
+
+  asesmenAkhir:
+    "📝 Asesmen Akhir Periode"
+
+};
+
+
+const generatorDescriptions = {
+
+  media:
+    "Buat media pembelajaran interaktif sesuai kelas dan kebutuhan siswa.",
+
+  materi:
+    "Buat materi pembelajaran yang jelas, bermakna, dan sesuai fase.",
+
+  presentation:
+    "Buat rancangan presentasi pembelajaran yang menarik dan tidak penuh teks.",
+
+  lkpd:
+    "Buat LKPD modern, menarik, dan siap digunakan peserta didik.",
+
+  game:
+    "Buat game atau kuis pembelajaran yang menyenangkan.",
+
+  html:
+    "Buat konsep atau halaman HTML interaktif untuk pembelajaran.",
+
+  rpm:
+    "Buat Rencana Pembelajaran Mendalam yang kontekstual.",
+
+  blankoNilai:
+    "Buat blanko nilai dan pengolahan asesmen.",
+
+  asesmenTengah:
+    "Buat asesmen tengah periode berdasarkan materi yang sudah diajarkan.",
+
+  asesmenAkhir:
+    "Buat asesmen akhir periode berdasarkan keseluruhan materi yang dipelajari."
+
+};
+
+
+/* =========================================================
+   SELECT GENERATOR
+   ========================================================= */
+
+function selectContentType(type){
+
+  currentContentType = type;
+
+  document
+    .querySelectorAll(".generator-card")
+    .forEach(card => {
+
+      card.classList.toggle(
+        "active",
+        card.dataset.type === type
+      );
+
+    });
+
+
+  document.getElementById("workspaceTitle").textContent =
+    generatorNames[type];
+
+  document.getElementById("workspaceSubtitle").textContent =
+    generatorDescriptions[type];
+
+
+  const assessment =
+    type === "asesmenTengah" ||
+    type === "asesmenAkhir";
+
+
+  document.getElementById("assessmentSection").style.display =
+    assessment ? "block" : "none";
+
+
+  document.getElementById("materiBasicField").style.display =
+    assessment ? "none" : "flex";
+
+
+  document.getElementById("tujuanBasicField").style.display =
+    assessment ? "none" : "flex";
+
+
+  const label =
+    document.getElementById("materiAsesmenLabel");
+
+  if(type === "asesmenTengah"){
+
+    label.textContent =
+      "Materi yang Sudah Diajarkan Sampai Tengah Periode";
+
+  }
+  else{
+
+    label.textContent =
+      "Materi yang Sudah Dipelajari Selama Periode";
+
+  }
+
+
+  window.scrollTo({
+    top:
+      document.getElementById("workspace").offsetTop - 75,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================================
+   ADAPTIVE CLASS
+   ========================================================= */
+
+function getPhase(kelas){
+
+  const number =
+    parseInt(kelas);
+
+  if(number <= 2){
+    return "Fase A";
+  }
+
+  if(number <= 4){
+    return "Fase B";
+  }
+
+  return "Fase C";
+
+}
+
+
+function updateAdaptiveInfo(){
+
+  const kelas =
+    document.getElementById("kelas").value;
+
+  const phase =
+    getPhase(kelas);
+
+  const info =
+    document.getElementById("adaptiveInfo");
+
+  info.innerHTML = `
+    <span class="adaptive-badge">${phase}</span>
+    <span>
+      Kelas ${kelas} otomatis menggunakan karakteristik pembelajaran ${phase}.
+    </span>
+  `;
+
+}
+
+
+/* =========================================================
+   CHARACTER
+   ========================================================= */
+
+function getCharacterData(){
+
+  const selected =
+    Array.from(
+      document.querySelectorAll(".character-check:checked")
+    )
+    .map(el => el.value);
+
+  const description =
+    document
+      .getElementById("characterDescription")
+      .value
+      .trim();
+
+  return {
+    selected,
+    description
+  };
+
+}
+
+
+/* =========================================================
+   VISUAL
+   ========================================================= */
+
+function getVisualData(){
+
+  const elements =
+    Array.from(
+      document.querySelectorAll(".visual-element:checked")
+    )
+    .map(el => el.value);
+
+
+  return {
+
+    visualTheme:
+      document.getElementById("visualTheme").value,
+
+    colorPalette:
+      document.getElementById("colorPalette").value,
+
+    illustrationStyle:
+      document.getElementById("illustrationStyle").value,
+
+    visualDensity:
+      document.getElementById("visualDensity").value,
+
+    visualMode:
+      document.getElementById("visualMode").value,
+
+    visualElements:
+      elements
+
+  };
+
+}
+
+
+/* =========================================================
+   FORM DATA
+   ========================================================= */
+
+function getFormData(){
+
+  const character =
+    getCharacterData();
+
+
+  const assessment =
+    currentContentType === "asesmenTengah" ||
+    currentContentType === "asesmenAkhir";
+
+
+  return {
+
+    contentType:
+      currentContentType,
+
+    mapel:
+      document.getElementById("mapel").value.trim(),
+
+    kelas:
+      document.getElementById("kelas").value,
+
+    materi:
+      document.getElementById("materi").value.trim(),
+
+    tujuan:
+      document.getElementById("tujuan").value.trim(),
+
+    character:
+      character.selected,
+
+    characterDescription:
+      character.description,
+
+    platform:
+      document.getElementById("platform").value,
+
+    kesulitan:
+      document.getElementById("kesulitan").value,
+
+    learningMode:
+      document.getElementById("learningMode").value,
+
+    ...getVisualData(),
+
+    ...(assessment ? {
+
+      satuanPendidikan:
+        document.getElementById("satuanPendidikan").value.trim(),
+
+      namaGuru:
+        document.getElementById("namaGuru").value.trim(),
+
+      semester:
+        document.getElementById("semester").value,
+
+      tahunPelajaran:
+        document.getElementById("tahunPelajaran").value.trim(),
+
+      materiSudahDiajarkan:
+        document
+          .getElementById("materiSudahDiajarkan")
+          .value
+          .trim(),
+
+      tpAsesmen:
+        document
+          .getElementById("tpAsesmen")
+          .value
+          .trim(),
+
+      jumlahSoalAsesmen:
+        document
+          .getElementById("jumlahSoalAsesmen")
+          .value,
+
+      bentukSoalAsesmen:
+        document
+          .getElementById("bentukSoalAsesmen")
+          .value,
+
+      levelKognitif:
+        document
+          .getElementById("levelKognitif")
+          .value,
+
+      komposisiKesulitan:
+        document
+          .getElementById("komposisiKesulitan")
+          .value,
+
+      sistemPenskoran:
+        document
+          .getElementById("sistemPenskoran")
+          .value,
+
+      komponenOutputAsesmen:
+        document
+          .getElementById("komponenOutputAsesmen")
+          .value
+
+    } : {})
+
+  };
+
+}
+
+
+/* =========================================================
+   VALIDATION
+   ========================================================= */
+
+function validateForm(data){
+
+  if(!data.mapel){
+
+    showToast(
+      "Silakan isi Mata Pelajaran.",
+      "error"
+    );
+
+    return false;
+
+  }
+
+
+  if(!data.kelas){
+
+    showToast(
+      "Silakan pilih kelas.",
+      "error"
+    );
+
+    return false;
+
+  }
+
+
+  const assessment =
+    currentContentType === "asesmenTengah" ||
+    currentContentType === "asesmenAkhir";
+
+
+  if(assessment){
+
+    if(!data.materiSudahDiajarkan){
+
+      showToast(
+        "Isi materi yang sudah diajarkan terlebih dahulu.",
+        "error"
+      );
+
+      return false;
+
+    }
+
+
+    if(!data.tpAsesmen){
+
+      showToast(
+        "Isi Tujuan Pembelajaran terlebih dahulu.",
+        "error"
+      );
+
+      return false;
+
+    }
+
+  }
+  else{
+
+    if(!data.materi){
+
+      showToast(
+        "Silakan isi materi pembelajaran.",
+        "error"
+      );
+
+      return false;
+
+    }
+
+
+    if(!data.tujuan){
+
+      showToast(
+        "Silakan isi tujuan pembelajaran.",
+        "error"
+      );
+
+      return false;
+
+    }
+
+  }
+
+
+  return true;
+
+}
+
+
+/* =========================================================
+   GENERATE
+   ========================================================= */
+
+async function generateContent(){
+
+  const data =
+    getFormData();
+
+
+  if(!validateForm(data)){
+    return;
+  }
+
+
+  const button =
+    document.getElementById("generateBtn");
+
+  const loading =
+    document.getElementById("loading");
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "⏳ Membuat...";
+
+  loading.classList.add("show");
+
+
+  try{
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":"application/json"
+          },
+
+          body:
+            JSON.stringify(data)
+        }
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if(!response.ok || !result.success){
+
+      throw new Error(
+        result.message ||
+        "Gagal membuat konten."
+      );
+
+    }
+
+
+    currentResult =
+      result.prompt || "";
+
+
+    showResult(
+      currentResult,
+      data
+    );
+
+
+    saveToHistory(
+      data,
+      currentResult
+    );
+
+
+    showToast(
+      "Konten berhasil dibuat.",
+      "success"
+    );
+
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    showToast(
+      "Gagal terhubung ke server: " +
+      error.message,
+      "error"
+    );
+
+  }
+  finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      "🚀 Generate";
+
+    loading.classList.remove("show");
+
+  }
+
+}
+
+
+/* =========================================================
+   SHOW RESULT
+   ========================================================= */
+
+function showResult(text,data){
+
+  const section =
+    document.getElementById("resultSection");
+
+  const content =
+    document.getElementById("resultContent");
+
+  const subtitle =
+    document.getElementById("resultSubtitle");
+
+
+  content.textContent =
+    text;
+
+
+  subtitle.textContent =
+    generatorNames[data.contentType] +
+    " • " +
+    "Kelas " +
+    data.kelas +
+    " • " +
+    getPhase(data.kelas);
+
+
+  section.classList.add("show");
+
+
+  setTimeout(() => {
+
+    section.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  },100);
+
+}
+
+
+/* =========================================================
+   COPY
+   ========================================================= */
+
+async function copyResult(){
+
+  if(!currentResult){
+
+    showToast(
+      "Belum ada hasil untuk disalin.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    await navigator.clipboard.writeText(
+      currentResult
+    );
+
+    showToast(
+      "Hasil berhasil disalin.",
+      "success"
+    );
+
+  }
+  catch(error){
+
+    showToast(
+      "Tidak dapat menyalin otomatis.",
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   DOWNLOAD
+   ========================================================= */
+
+function downloadResult(){
+
+  if(!currentResult){
+
+    showToast(
+      "Belum ada hasil untuk diunduh.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const blob =
+    new Blob(
+      [currentResult],
+      {
+        type:"text/plain;charset=utf-8"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const a =
+    document.createElement("a");
+
+
+  a.href = url;
+
+  a.download =
+    "Ardi-EduAI-" +
+    currentContentType +
+    "-" +
+    Date.now() +
+    ".txt";
+
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+  URL.revokeObjectURL(url);
+
+
+  showToast(
+    "File TXT berhasil dibuat.",
+    "success"
+  );
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+function resetForm(){
+
+  document.getElementById("mapel").value = "";
+
+  document.getElementById("materi").value = "";
+
+  document.getElementById("tujuan").value = "";
+
+  document.getElementById("characterDescription").value = "";
+
+  document.getElementById("satuanPendidikan").value = "";
+
+  document.getElementById("namaGuru").value = "";
+
+  document.getElementById("materiSudahDiajarkan").value = "";
+
+  document.getElementById("tpAsesmen").value = "";
+
+
+  document
+    .querySelectorAll(".character-check")
+    .forEach(el => el.checked = false);
+
+
+  showToast(
+    "Form berhasil direset.",
+    "success"
+  );
+
+}
+
+
+/* =========================================================
+   QUICK START
+   ========================================================= */
+
+function toggleQuickStart(){
+
+  document
+    .getElementById("quickPanel")
+    .classList.toggle("show");
+
+}
+
+
+function quickStart(mapel,materi){
+
+  document.getElementById("mapel").value =
+    mapel;
+
+  document.getElementById("materi").value =
+    materi;
+
+  document.getElementById("tujuan").value =
+    "Peserta didik mampu memahami, menjelaskan, dan menerapkan konsep sesuai materi pembelajaran.";
+
+
+  document
+    .getElementById("quickPanel")
+    .classList.remove("show");
+
+
+  document
+    .getElementById("workspace")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+
+  showToast(
+    "Contoh data Quick Start telah dimasukkan.",
+    "success"
+  );
+
+}
+
+
+/* =========================================================
+   HISTORY
+   ========================================================= */
+
+function saveToHistory(data,result){
+
+  const title =
+    data.titleMateri ||
+    data.materi ||
+    data.materiSudahDiajarkan ||
+    "Tanpa Judul";
+
+
+  const item = {
+
+    id:Date.now(),
+
+    generator:
+      generatorNames[data.contentType],
+
+    title:
+
+      title.length > 70
+        ? title.substring(0,70) + "..."
+        : title,
+
+    result:
+
+      result,
+
+    date:
+
+      new Date().toLocaleString(
+        "id-ID"
+      )
+
+  };
+
+
+  historyData.unshift(item);
+
+
+  historyData =
+    historyData.slice(0,20);
+
+
+  localStorage.setItem(
+    "ardiEduAIHistory",
+    JSON.stringify(historyData)
+  );
+
+
+  renderHistory();
+
+}
+
+
+/* =========================================================
+   RENDER HISTORY
+   ========================================================= */
+
+function renderHistory(){
+
+  const container =
+    document.getElementById("historyList");
+
+
+  if(!historyData.length){
+
+    container.innerHTML = `
+      <div
+        style="
+          padding:12px;
+          text-align:center;
+          color:#94a3b8;
+          font-size:11px;
+        "
+      >
+        Belum ada riwayat.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    historyData
+      .map(item => `
+
+        <div class="history-item">
+
+          <div>
+
+            <div class="history-name">
+              ${escapeHtml(item.generator)}
+            </div>
+
+            <div
+              class="history-date"
+            >
+              ${escapeHtml(item.title)}
+              •
+              ${escapeHtml(item.date)}
+            </div>
+
+          </div>
+
+          <button
+            class="small-btn"
+            onclick="loadHistory(${item.id})"
+          >
+            Buka
+          </button>
+
+        </div>
+
+      `)
+      .join("");
+
+}
+
+
+/* =========================================================
+   LOAD HISTORY
+   ========================================================= */
+
+function loadHistory(id){
+
+  const item =
+    historyData.find(
+      x => x.id === id
+    );
+
+
+  if(!item){
+    return;
+  }
+
+
+  currentResult =
+    item.result;
+
+
+  const section =
+    document.getElementById("resultSection");
+
+  const content =
+    document.getElementById("resultContent");
+
+
+  content.textContent =
+    item.result;
+
+
+  section.classList.add("show");
+
+
+  section.scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================================
+   CLEAR HISTORY
+   ========================================================= */
+
+function clearHistory(){
+
+  if(!historyData.length){
+
+    showToast(
+      "Riwayat masih kosong.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      "Hapus seluruh riwayat Ardi EduAI?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  historyData = [];
+
+
+  localStorage.removeItem(
+    "ardiEduAIHistory"
+  );
+
+
+  renderHistory();
+
+
+  showToast(
+    "Riwayat berhasil dihapus.",
+    "success"
+  );
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+function scrollToGenerator(){
+
+  document
+    .getElementById("generatorSection")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+function scrollToResult(){
+
+  document
+    .getElementById("resultSection")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+let toastTimer;
+
+
+function showToast(message,type=""){
+
+  const toast =
+    document.getElementById("toast");
+
+
+  toast.textContent =
+    message;
+
+
+  toast.className =
+    "toast show " +
+    type;
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(() => {
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },3000);
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHtml(value){
+
+  return String(value)
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    updateAdaptiveInfo();
+
+    renderHistory();
+
+    selectContentType(
+      "media"
+    );
+
+  }
+);
+
+</script>
+
+</body>
+</html>

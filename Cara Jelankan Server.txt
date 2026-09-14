@@ -1,0 +1,11 @@
+Jalankan server
+Buka PowerShell.
+Masuk ke folder server dengan perintah:
+cd "C:\Users\Digitalisasi\Desktop\PromptEduGenerator\server"
+
+Tekan Enter.
+
+Setelah itu jalankan:
+npm.cmd start
+
+Tekan Enter.

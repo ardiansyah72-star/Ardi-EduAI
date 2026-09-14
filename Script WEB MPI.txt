@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prompt Edu Generator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 35px 25px;
+            border-radius: 22px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.20);
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 34px;
+        }
+
+        .header p {
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 14px;
+            background: rgba(255,255,255,0.18);
+            border-radius: 30px;
+            font-size: 13px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            background: white;
+        }
+
+        textarea {
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.10);
+        }
+
+        .info {
+            margin-top: 8px;
+            padding: 12px;
+            background: #eff6ff;
+            border-radius: 10px;
+            font-size: 13px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        button {
+            border: none;
+            padding: 13px 18px;
+            border-radius: 10px;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            opacity: 0.92;
+        }
+
+        .btn-generate {
+            width: 100%;
+            background: #2563eb;
+            font-size: 17px;
+            padding: 16px;
+        }
+
+        .btn-copy {
+            background: #16a34a;
+        }
+
+        .btn-save {
+            background: #7c3aed;
+        }
+
+        .btn-reset {
+            background: #f59e0b;
+        }
+
+        .btn-clear {
+            background: #dc2626;
+        }
+
+        .btn-favorite {
+            background: #db2777;
+        }
+
+        .btn-small {
+            padding: 8px 12px;
+            font-size: 13px;
+        }
+
+        #hasilPrompt {
+            min-height: 500px;
+            background: #f8fafc;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            padding: 18px;
+            border-radius: 14px;
+            background: #f8fafc;
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 25px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .history-search {
+            margin-bottom: 15px;
+        }
+
+        .history-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8fafc;
+        }
+
+        .history-item h4 {
+            margin: 0 0 7px;
+        }
+
+        .history-meta {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .history-actions {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+
+        .footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            padding: 20px;
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                padding: 10px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button-group button {
+                width: 100%;
+            }
+
+            .card {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <h1>🎓 Prompt Edu Generator</h1>
+
+        <p>
+            Intelligent Generator Prompt Media Pembelajaran Interaktif
+        </p>
+
+        <div class="badge">
+            Versi Pembelajaran 1–10
+        </div>
+
+    </div>
+
+
+    <!-- FORM -->
+    <div class="card">
+
+        <h2>📝 Pengaturan Media Pembelajaran</h2>
+
+        <div class="form-grid">
+
+
+            <!-- MAPEL -->
+            <div class="form-group">
+
+                <label for="mapel">
+                    📚 Mata Pelajaran
+                </label>
+
+                <select id="mapel">
+
+                    <option>PAI dan Budi Pekerti</option>
+                    <option>Bahasa Indonesia</option>
+                    <option>Matematika</option>
+                    <option>IPAS</option>
+                    <option>PPKn</option>
+                    <option>Bahasa Inggris</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- KELAS -->
+            <div class="form-group">
+
+                <label for="kelas">
+                    🎒 Kelas
+                </label>
+
+                <select id="kelas">
+
+                    <option>Kelas 1</option>
+                    <option>Kelas 2</option>
+                    <option>Kelas 3</option>
+                    <option>Kelas 4</option>
+                    <option>Kelas 5</option>
+                    <option>Kelas 6</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- MATERI -->
+            <div class="form-group full">
+
+                <label for="materi">
+                    📖 Materi Pembelajaran
+                </label>
+
+                <input
+                    type="text"
+                    id="materi"
+                    placeholder="Contoh: Zakat, Infak dan Sedekah"
+                >
+
+            </div>
+
+
+            <!-- TUJUAN -->
+            <div class="form-group full">
+
+                <label for="tujuan">
+                    🎯 Tujuan Pembelajaran
+                </label>
+
+                <textarea
+                    id="tujuan"
+                    rows="4"
+                    placeholder="Tuliskan tujuan pembelajaran..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- KARAKTER -->
+            <div class="form-group">
+
+                <label for="karakter">
+                    👨‍🎓 Karakteristik Siswa
+                </label>
+
+                <select id="karakter">
+
+                    <option>Siswa SD kelas rendah</option>
+
+                    <option>Siswa SD kelas tinggi</option>
+
+                    <option>Siswa dengan kemampuan beragam</option>
+
+                    <option>Siswa yang membutuhkan banyak bantuan</option>
+
+                    <option>Siswa yang cepat memahami materi</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- MEDIA -->
+            <div class="form-group">
+
+                <label for="media">
+                    🎮 Jenis Media
+                </label>
+
+                <select id="media">
+
+                    <option>Game Edukasi</option>
+
+                    <option>Kuis Interaktif</option>
+
+                    <option>Puzzle</option>
+
+                    <option>Flashcard</option>
+
+                    <option>Petualangan Edukatif</option>
+
+                    <option>Cerita Interaktif</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- KESULITAN -->
+            <div class="form-group">
+
+                <label for="kesulitan">
+                    ⭐ Tingkat Kesulitan
+                </label>
+
+                <select id="kesulitan">
+
+                    <option>Mudah</option>
+                    <option>Mudah - Menengah</option>
+                    <option>Menengah</option>
+                    <option>Menengah - Sulit</option>
+                    <option>Sulit</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- JUMLAH SOAL -->
+            <div class="form-group">
+
+                <label for="jumlahSoal">
+                    🔢 Jumlah Soal
+                </label>
+
+                <input
+                    type="number"
+                    id="jumlahSoal"
+                    value="10"
+                    min="1"
+                    max="100"
+                >
+
+            </div>
+
+
+            <!-- FITUR -->
+            <div class="form-group full">
+
+                <label for="fitur">
+                    ⚡ Fitur Interaktif
+                </label>
+
+                <select
+                    id="fitur"
+                    multiple
+                    size="7"
+                >
+
+                    <option value="Skor">🏆 Skor</option>
+                    <option value="Level">⭐ Level</option>
+                    <option value="Timer">⏱️ Timer</option>
+                    <option value="Feedback">💬 Feedback</option>
+                    <option value="Animasi">✨ Animasi</option>
+                    <option value="Suara">🔊 Efek Suara</option>
+                    <option value="Leaderboard">🥇 Leaderboard</option>
+
+                </select>
+
+                <div class="info">
+                    💡 Tekan <b>Ctrl</b> sambil memilih beberapa fitur.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <br>
+
+        <button
+            class="btn-generate"
+            onclick="generatePrompt()"
+        >
+            🚀 GENERATE PROMPT
+        </button>
+
+    </div>
+
+
+    <!-- HASIL -->
+    <div class="card">
+
+        <h2>📋 Hasil Prompt</h2>
+
+        <textarea
+            id="hasilPrompt"
+            placeholder="Prompt akan muncul di sini..."
+        ></textarea>
+
+
+        <div class="button-group">
+
+            <button
+                class="btn-copy"
+                onclick="copyPrompt()"
+            >
+                📋 Salin Prompt
+            </button>
+
+            <button
+                class="btn-save"
+                onclick="savePrompt()"
+            >
+                💾 Simpan Prompt
+            </button>
+
+            <button
+                class="btn-favorite"
+                onclick="favoritePrompt()"
+            >
+                ⭐ Jadikan Favorit
+            </button>
+
+            <button
+                class="btn-reset"
+                onclick="resetForm()"
+            >
+                🔄 Reset Form
+            </button>
+
+            <button
+                class="btn-clear"
+                onclick="clearResult()"
+            >
+                🧹 Bersihkan Hasil
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATISTIK -->
+    <div class="card">
+
+        <h2>📊 Statistik</h2>
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <span
+                    class="stat-number"
+                    id="jumlahRiwayat"
+                >
+                    0
+                </span>
+
+                Riwayat Prompt
+
+            </div>
+
+
+            <div class="stat">
+
+                <span
+                    class="stat-number"
+                    id="jumlahFavorit"
+                >
+                    0
+                </span>
+
+                Prompt Favorit
+
+            </div>
+
+
+            <div class="stat">
+
+                <span
+                    class="stat-number"
+                    id="jumlahDibuat"
+                >
+                    0
+                </span>
+
+                Total Dibuat
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIWAYAT -->
+    <div class="card">
+
+        <h2>📜 Riwayat Prompt</h2>
+
+        <input
+            type="text"
+            id="searchHistory"
+            class="history-search"
+            placeholder="🔍 Cari riwayat..."
+            oninput="displayHistory()"
+        >
+
+        <div id="historyList"></div>
+
+    </div>
+
+
+    <div class="footer">
+
+        🎓 Prompt Edu Generator |
+        Media Pembelajaran Interaktif
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   PROMPT EDU GENERATOR
+   PELAJARAN 1 - 10
+   ===================================================== */
+
+
+/* =====================================================
+   FUNGSI MENGAMBIL FITUR
+   ===================================================== */
+
+function getSelectedFeatures() {
+
+    let select =
+        document.getElementById("fitur");
+
+    let selected = [];
+
+    for (let option of select.options) {
+
+        if (option.selected) {
+
+            selected.push(option.value);
+
+        }
+
+    }
+
+    if (selected.length === 0) {
+
+        return ["Skor", "Feedback"];
+
+    }
+
+    return selected;
+}
+
+
+/* =====================================================
+   PROMPT ENGINE
+   ===================================================== */
+
+function getMediaConcept(media) {
+
+    if (media === "Game Edukasi") {
+
+        return `
+MEDIA BERBENTUK GAME EDUKASI
+
+Buat permainan edukatif yang memiliki:
+
+- Halaman pembuka
+- Tombol mulai
+- Sistem level
+- Misi pembelajaran
+- Tantangan
+- Sistem skor
+- Feedback
+- Kondisi kemenangan
+- Kondisi permainan selesai
+- Tombol bermain kembali
+
+Game harus membuat siswa belajar melalui aktivitas.
+`;
+
+    }
+
+
+    if (media === "Kuis Interaktif") {
+
+        return `
+MEDIA BERBENTUK KUIS INTERAKTIF
+
+Buat kuis yang memiliki:
+
+- Halaman pembuka
+- Pertanyaan pilihan ganda
+- Pilihan jawaban
+- Validasi jawaban
+- Feedback
+- Perhitungan skor
+- Progress soal
+- Hasil akhir
+- Tombol coba lagi
+
+Setiap pertanyaan harus berhubungan dengan materi.
+`;
+
+    }
+
+
+    if (media === "Puzzle") {
+
+        return `
+MEDIA BERBENTUK PUZZLE EDUKASI
+
+Buat puzzle pembelajaran yang memiliki:
+
+- Potongan puzzle
+- Drag and drop
+- Target puzzle
+- Pemeriksaan jawaban
+- Petunjuk
+- Feedback
+- Sistem skor
+- Tingkat kesulitan
+- Kondisi puzzle selesai
+
+Puzzle harus tetap mengajarkan konsep materi.
+`;
+
+    }
+
+
+    if (media === "Flashcard") {
+
+        return `
+MEDIA BERBENTUK FLASHCARD INTERAKTIF
+
+Buat flashcard yang memiliki:
+
+- Pertanyaan di bagian depan
+- Jawaban di bagian belakang
+- Animasi membalik kartu
+- Tombol sebelumnya
+- Tombol berikutnya
+- Penjelasan
+- Feedback
+- Sistem pengulangan
+
+Setiap kartu harus membantu siswa memahami materi.
+`;
+
+    }
+
+
+    if (media === "Petualangan Edukatif") {
+
+        return `
+MEDIA BERBENTUK PETUALANGAN EDUKATIF
+
+Buat sebuah perjalanan belajar yang memiliki:
+
+- Karakter utama
+- Cerita
+- Peta perjalanan
+- Beberapa lokasi
+- Misi
+- Tantangan
+- Pertanyaan
+- Sistem level
+- Skor
+- Feedback
+- Kondisi kemenangan
+
+Siswa belajar sambil menyelesaikan petualangan.
+`;
+
+    }
+
+
+    if (media === "Cerita Interaktif") {
+
+        return `
+MEDIA BERBENTUK CERITA INTERAKTIF
+
+Buat cerita pembelajaran yang memiliki:
+
+- Tokoh
+- Latar
+- Alur cerita
+- Dialog
+- Ilustrasi
+- Pilihan siswa
+- Pertanyaan
+- Feedback
+- Evaluasi
+- Kesimpulan pembelajaran
+
+Pilihan siswa harus berhubungan dengan tujuan pembelajaran.
+`;
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =====================================================
+   MEMBUAT PROMPT
+   ===================================================== */
+
+function generatePrompt() {
+
+    let mapel =
+        document.getElementById("mapel").value;
+
+    let kelas =
+        document.getElementById("kelas").value;
+
+    let materi =
+        document.getElementById("materi").value.trim();
+
+    let tujuan =
+        document.getElementById("tujuan").value.trim();
+
+    let karakter =
+        document.getElementById("karakter").value;
+
+    let media =
+        document.getElementById("media").value;
+
+    let kesulitan =
+        document.getElementById("kesulitan").value;
+
+    let jumlahSoal =
+        document.getElementById("jumlahSoal").value;
+
+    let fitur =
+        getSelectedFeatures();
+
+
+    /* Validasi */
+
+    if (materi === "") {
+
+        alert("Silakan isi Materi Pembelajaran terlebih dahulu.");
+
+        document.getElementById("materi").focus();
+
+        return;
+
+    }
+
+
+    if (tujuan === "") {
+
+        alert("Silakan isi Tujuan Pembelajaran terlebih dahulu.");
+
+        document.getElementById("tujuan").focus();
+
+        return;
+
+    }
+
+
+    let konsepMedia =
+        getMediaConcept(media);
+
+
+    let prompt = `
+
+===============================================
+PROMPT MEDIA PEMBELAJARAN INTERAKTIF
+===============================================
+
+PERAN AI
+
+Anda adalah ahli desain pembelajaran,
+instructional designer, game designer,
+UI/UX designer dan pengembang media
+pembelajaran interaktif untuk siswa sekolah dasar.
+
+
+===============================================
+IDENTITAS PEMBELAJARAN
+===============================================
+
+Mata Pelajaran:
+${mapel}
+
+Kelas:
+${kelas}
+
+Materi:
+${materi}
+
+Tujuan Pembelajaran:
+${tujuan}
+
+Karakteristik Siswa:
+${karakter}
+
+Jenis Media:
+${media}
+
+Tingkat Kesulitan:
+${kesulitan}
+
+Jumlah Soal:
+${jumlahSoal}
+
+Fitur Interaktif:
+${fitur.join(", ")}
+
+
+===============================================
+KONSEP MEDIA
+===============================================
+
+${konsepMedia}
+
+
+===============================================
+STRATEGI PEMBELAJARAN
+===============================================
+
+Media harus membuat siswa:
+
+1. Memahami materi.
+2. Melakukan aktivitas.
+3. Membuat keputusan.
+4. Menjawab pertanyaan.
+5. Mendapatkan feedback.
+6. Menyelesaikan tantangan.
+7. Melakukan evaluasi.
+
+
+===============================================
+ATURAN SOAL
+===============================================
+
+Buat ${jumlahSoal} soal.
+
+Soal harus:
+
+- Sesuai materi.
+- Sesuai kelas.
+- Sesuai tujuan pembelajaran.
+- Menggunakan bahasa yang mudah dipahami.
+- Memiliki jawaban yang jelas.
+- Memiliki pengecoh yang masuk akal.
+- Memiliki feedback.
+- Memiliki tingkat kesulitan ${kesulitan}.
+
+
+===============================================
+FITUR INTERAKTIF
+===============================================
+
+Gunakan fitur:
+
+${fitur.join(", ")}
+
+Implementasikan fitur tersebut secara nyata
+dalam media, bukan hanya menampilkannya.
+
+
+===============================================
+DESAIN UI/UX
+===============================================
+
+Buat desain:
+
+- Modern.
+- Ceria.
+- Ramah anak.
+- Mudah digunakan.
+- Responsive.
+- Cocok untuk laptop dan HP.
+- Tombol jelas.
+- Navigasi sederhana.
+- Tulisan mudah dibaca.
+- Tidak terlalu banyak teks dalam satu layar.
+
+
+===============================================
+FEEDBACK
+===============================================
+
+Setiap aktivitas penting harus memberikan feedback.
+
+Jika siswa benar:
+
+Berikan apresiasi dan penjelasan singkat.
+
+Jika siswa salah:
+
+Jangan hanya mengatakan salah.
+
+Berikan penjelasan dan kesempatan untuk belajar.
+
+
+===============================================
+ASESMEN
+===============================================
+
+Sediakan:
+
+- Skor.
+- Evaluasi.
+- Hasil akhir.
+- Interpretasi hasil.
+- Pesan motivasi kepada siswa.
+
+
+===============================================
+OUTPUT TEKNIS
+===============================================
+
+Jika memungkinkan, buat media dalam satu file:
+
+HTML
+CSS
+JavaScript
+
+Media harus dapat dijalankan langsung
+di browser tanpa konfigurasi rumit.
+
+
+===============================================
+KETENTUAN PENTING
+===============================================
+
+Jangan membuat media yang hanya berisi
+teks dan tombol.
+
+Buat siswa benar-benar melakukan interaksi.
+
+Pastikan semua tombol berfungsi.
+
+Pastikan navigasi dapat digunakan.
+
+Pastikan soal dapat dijawab.
+
+Pastikan skor dihitung.
+
+Pastikan feedback muncul.
+
+Pastikan hasil akhir dapat ditampilkan.
+
+
+===============================================
+TUJUAN AKHIR
+===============================================
+
+Buat pengalaman belajar yang:
+
+EDUKATIF
+INTERAKTIF
+MENYENANGKAN
+MENANTANG
+RAMAH ANAK
+SESUAI KURIKULUM
+SESUAI TUJUAN PEMBELAJARAN
+
+Media harus membantu siswa mencapai:
+
+${tujuan}
+
+===============================================
+`;
+
+    document.getElementById("hasilPrompt").value =
+        prompt;
+
+
+    /* Simpan penghitung */
+
+    let total =
+        parseInt(
+            localStorage.getItem("totalDibuat") || "0"
+        );
+
+    total++;
+
+    localStorage.setItem(
+        "totalDibuat",
+        total
+    );
+
+
+    updateStatistics();
+
+}
+
+
+/* =====================================================
+   SALIN PROMPT
+   ===================================================== */
+
+function copyPrompt() {
+
+    let prompt =
+        document.getElementById("hasilPrompt").value;
+
+    if (prompt.trim() === "") {
+
+        alert("Belum ada prompt yang bisa disalin.");
+
+        return;
+
+    }
+
+
+    if (navigator.clipboard) {
+
+        navigator.clipboard.writeText(prompt)
+            .then(function() {
+
+                alert("✅ Prompt berhasil disalin!");
+
+            })
+            .catch(function() {
+
+                fallbackCopy();
+
+            });
+
+    } else {
+
+        fallbackCopy();
+
+    }
+
+}
+
+
+function fallbackCopy() {
+
+    let textarea =
+        document.getElementById("hasilPrompt");
+
+    textarea.select();
+
+    document.execCommand("copy");
+
+    alert("✅ Prompt berhasil disalin!");
+
+}
+
+
+/* =====================================================
+   SIMPAN PROMPT
+   ===================================================== */
+
+function savePrompt() {
+
+    let prompt =
+        document.getElementById("hasilPrompt").value;
+
+    if (prompt.trim() === "") {
+
+        alert("Buat prompt terlebih dahulu.");
+
+        return;
+
+    }
+
+
+    let history =
+        JSON.parse(
+            localStorage.getItem("promptHistory") || "[]"
+        );
+
+
+    let item = {
+
+        id: Date.now(),
+
+        title:
+            document.getElementById("materi").value ||
+            "Prompt Tanpa Judul",
+
+        mapel:
+            document.getElementById("mapel").value,
+
+        kelas:
+            document.getElementById("kelas").value,
+
+        media:
+            document.getElementById("media").value,
+
+        prompt: prompt,
+
+        favorite: false,
+
+        date:
+            new Date().toLocaleString("id-ID")
+
+    };
+
+
+    history.unshift(item);
+
+
+    /* Maksimal 50 riwayat */
+
+    if (history.length > 50) {
+
+        history = history.slice(0, 50);
+
+    }
+
+
+    localStorage.setItem(
+        "promptHistory",
+        JSON.stringify(history)
+    );
+
+
+    alert("💾 Prompt berhasil disimpan!");
+
+    displayHistory();
+
+    updateStatistics();
+
+}
+
+
+/* =====================================================
+   FAVORIT
+   ===================================================== */
+
+function favoritePrompt() {
+
+    let prompt =
+        document.getElementById("hasilPrompt").value;
+
+    if (prompt.trim() === "") {
+
+        alert("Buat prompt terlebih dahulu.");
+
+        return;
+
+    }
+
+
+    let history =
+        JSON.parse(
+            localStorage.getItem("promptHistory") || "[]"
+        );
+
+
+    let item = {
+
+        id: Date.now(),
+
+        title:
+            document.getElementById("materi").value ||
+            "Prompt Favorit",
+
+        mapel:
+            document.getElementById("mapel").value,
+
+        kelas:
+            document.getElementById("kelas").value,
+
+        media:
+            document.getElementById("media").value,
+
+        prompt: prompt,
+
+        favorite: true,
+
+        date:
+            new Date().toLocaleString("id-ID")
+
+    };
+
+
+    history.unshift(item);
+
+
+    if (history.length > 50) {
+
+        history = history.slice(0, 50);
+
+    }
+
+
+    localStorage.setItem(
+        "promptHistory",
+        JSON.stringify(history)
+    );
+
+
+    alert("⭐ Prompt ditambahkan ke favorit!");
+
+    displayHistory();
+
+    updateStatistics();
+
+}
+
+
+/* =====================================================
+   TAMPILKAN RIWAYAT
+   ===================================================== */
+
+function displayHistory() {
+
+    let list =
+        document.getElementById("historyList");
+
+    let history =
+        JSON.parse(
+            localStorage.getItem("promptHistory") || "[]"
+        );
+
+
+    let search =
+        document.getElementById("searchHistory")
+            .value
+            .toLowerCase();
+
+
+    let filtered =
+        history.filter(function(item) {
+
+            return (
+
+                item.title.toLowerCase().includes(search) ||
+
+                item.mapel.toLowerCase().includes(search) ||
+
+                item.media.toLowerCase().includes(search)
+
+            );
+
+        });
+
+
+    if (filtered.length === 0) {
+
+        list.innerHTML = `
+            <div class="empty">
+                📭 Belum ada riwayat prompt.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    filtered.forEach(function(item) {
+
+        let div =
+            document.createElement("div");
+
+        div.className =
+            "history-item";
+
+
+        div.innerHTML = `
+
+            <h4>
+                ${item.favorite ? "⭐ " : ""}
+                ${escapeHtml(item.title)}
+            </h4>
+
+            <div class="history-meta">
+
+                ${escapeHtml(item.mapel)}
+                |
+                ${escapeHtml(item.kelas)}
+                |
+                ${escapeHtml(item.media)}
+
+                <br>
+
+                ${escapeHtml(item.date)}
+
+            </div>
+
+            <div class="history-actions">
+
+                <button
+                    class="btn-copy btn-small"
+                    onclick="loadPrompt(${item.id})"
+                >
+                    📂 Buka
+                </button>
+
+                <button
+                    class="btn-clear btn-small"
+                    onclick="deletePrompt(${item.id})"
+                >
+                    🗑️ Hapus
+                </button>
+
+            </div>
+        `;
+
+
+        list.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+   MEMBUKA RIWAYAT
+   ===================================================== */
+
+function loadPrompt(id) {
+
+    let history =
+        JSON.parse(
+            localStorage.getItem("promptHistory") || "[]"
+        );
+
+
+    let item =
+        history.find(function(item) {
+
+            return item.id === id;
+
+        });
+
+
+    if (!item) {
+
+        return;
+
+    }
+
+
+    document.getElementById("hasilPrompt").value =
+        item.prompt;
+
+
+    document.getElementById("mapel").value =
+        item.mapel;
+
+    document.getElementById("kelas").value =
+        item.kelas;
+
+    document.getElementById("media").value =
+        item.media;
+
+    document.getElementById("materi").value =
+        item.title;
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+/* =====================================================
+   HAPUS RIWAYAT
+   ===================================================== */
+
+function deletePrompt(id) {
+
+    let yakin =
+        confirm("Hapus prompt ini dari riwayat?");
+
+
+    if (!yakin) {
+
+        return;
+
+    }
+
+
+    let history =
+        JSON.parse(
+            localStorage.getItem("promptHistory") || "[]"
+        );
+
+
+    history =
+        history.filter(function(item) {
+
+            return item.id !== id;
+
+        });
+
+
+    localStorage.setItem(
+        "promptHistory",
+        JSON.stringify(history)
+    );
+
+
+    displayHistory();
+
+    updateStatistics();
+
+}
+
+
+/* =====================================================
+   RESET FORM
+   ===================================================== */
+
+function resetForm() {
+
+    document.getElementById("mapel").selectedIndex = 0;
+
+    document.getElementById("kelas").selectedIndex = 0;
+
+    document.getElementById("materi").value = "";
+
+    document.getElementById("tujuan").value = "";
+
+    document.getElementById("karakter").selectedIndex = 0;
+
+    document.getElementById("media").selectedIndex = 0;
+
+    document.getElementById("kesulitan").selectedIndex = 0;
+
+    document.getElementById("jumlahSoal").value = 10;
+
+
+    let fitur =
+        document.getElementById("fitur");
+
+
+    for (let option of fitur.options) {
+
+        option.selected = false;
+
+    }
+
+
+    document.getElementById("hasilPrompt").value = "";
+
+}
+
+
+/* =====================================================
+   BERSIHKAN HASIL
+   ===================================================== */
+
+function clearResult() {
+
+    document.getElementById("hasilPrompt").value = "";
+
+}
+
+
+/* =====================================================
+   STATISTIK
+   ===================================================== */
+
+function updateStatistics() {
+
+    let history =
+        JSON.parse(
+            localStorage.getItem("promptHistory") || "[]"
+        );
+
+
+    let favorites =
+        history.filter(function(item) {
+
+            return item.favorite === true;
+
+        });
+
+
+    let total =
+        localStorage.getItem("totalDibuat") || "0";
+
+
+    document.getElementById("jumlahRiwayat")
+        .textContent = history.length;
+
+
+    document.getElementById("jumlahFavorit")
+        .textContent = favorites.length;
+
+
+    document.getElementById("jumlahDibuat")
+        .textContent = total;
+
+}
+
+
+/* =====================================================
+   KEAMANAN TAMPILAN TEKS
+   ===================================================== */
+
+function escapeHtml(text) {
+
+    return String(text)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =====================================================
+   MENJALANKAN SAAT HALAMAN DIBUKA
+   ===================================================== */
+
+displayHistory();
+
+updateStatistics();
+
+</script>
+
+</body>
+</html>
