@@ -2,3 +2,4 @@ server/.env
 server/node_modules/
 API key.txt
 PromptEduGenerator.zip
+node_modules/
